@@ -14,8 +14,8 @@ class Footer extends React.Component {
                         <div className="footer-top__logo">
                             <img src={logo_footer} height="108" alt="logo footer" />
                             <div className="footer-top__logo-icon">
-                                <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                <a href="#"><i className="fab fa-instagram"></i></a>
+                                <a href="#"><i className="fa fa-facebook-f"></i></a>
+                                <a href="#"><i className="fa fa-instagram"></i></a>
                             </div>
                         </div>
                         <div className="footer-top__introduct">

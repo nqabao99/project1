@@ -17,7 +17,7 @@ class Header extends React.Component {
                         </div>
                         <div className="header-center__form">
                             <form action="#">
-                                <i className="fas fa-map-marker-alt"></i>
+                            <i class="fa fa-map-marker"></i>
                                 <input type="text" placeholder="Nhập địa chỉ giao hàng" />
                             </form>
                         </div>

@@ -37,7 +37,7 @@ class Main extends React.Component {
                         </div>
                         <div className="main-container__left-product">
                             <form className="main-container__left-product__form" action="#">
-                                <i className="fas fa-search"></i>
+                                <i className="fa fa-search"></i>
                                 <input type="text" placeholder="Tìm kiếm sản phẩm" />
                             </form>
                             {

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/reset.css';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 import HomePage from './page/homePage.js';
 import reportWebVitals from './reportWebVitals';
 

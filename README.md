@@ -1,6 +1,6 @@
 #
 1. Chia giao diện thành các component
-![img](./img/rjs1.PNG)
+![img](./theme/img/rjs1.PNG)
 - header (màu tím)
     + header left (màu đỏ)
     + header center (màu đỏ)
