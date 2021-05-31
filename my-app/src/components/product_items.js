@@ -5,28 +5,12 @@ import ButtonAdd from './buttonAdd';
 
 
 class Product extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            products: []
-        };
-    }
-    
-    componentDidMount() {
-        fetch('https://api.thecoffeehouse.com/api/v2/menu')
-        .then((response) => response.json())
-        .then(result => {
-            this.setState({ products: result.data });
-        });
-    }
-
     render() {
-        const {products } = this.state;
+        const {products } = this.props;
         return(
             <ul className="category-product__list">
                 {
-                    products.map(item =>  item.categ_id.includes(this.props.categoryID) ? 
+                    products.map(item =>  
                     (
                         <li className="category-product__items" key={item._id}>
                             <Image className="category-product__items-img" src={item.image} alt={ `ảnh ${item.product_name}`} />
@@ -37,7 +21,7 @@ class Product extends React.Component {
                             </div>
                             <ButtonAdd />
                         </li>
-                    ) : null )                        
+                    ))                        
                 }
                 
             </ul>

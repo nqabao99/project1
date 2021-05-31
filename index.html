@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let category =  [
+            {
+                id: 1,
+                name: 'phổ biến'
+            },
+            {
+                id: 2,
+                name: 'cafe'
+            },
+            {
+                id: 3,
+                name: 'bia'
+            },
+            {
+                id: 4,
+                name: 'my'
+            }
+        ]
+
+        let product = [
+            {
+                id_product: 1,
+                name: 'cafe olong',
+                categ_id: [
+                    1,2
+                ]
+            },
+            {
+                id_product: 2,
+                name: 'nước lọc',
+                categ_id: [
+                    2,3
+                ]
+            },
+            {
+                id_product: 3,
+                name: 'nước mía',
+                categ_id: [
+                    1,3
+                ]
+            },
+            {
+                id_product: 4,
+                name: 'nước es',
+                categ_id: [
+                    9
+                ]
+            }
+        ]
+        category.forEach((category)=>{
+            let arr = [];
+            product.forEach((product)=>{
+                if(product.categ_id.includes(category.id)){
+                    arr.push(product);
+                }
+            })  
+            category.ListProduct = arr;   
+        })
+        // lengthca = Object.keys(category.ListProduct).length;
+        // console.log(lengthca);
+        console.log(category);
+        
+
+
+
+    </script>
+</body>
+</html>
