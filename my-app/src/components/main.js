@@ -12,7 +12,7 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categorys: [],
+            categories: [],
             products: []
         };
     }
@@ -20,7 +20,7 @@ class Main extends React.Component {
         fetch('https://api.thecoffeehouse.com/api/v2/category/web')
         .then((response) => response.json())
         .then(result => {
-            this.setState({ categorys: result });
+            this.setState({ categories: result });
         });
 
         fetch('https://api.thecoffeehouse.com/api/v2/menu')
@@ -33,19 +33,20 @@ class Main extends React.Component {
     }
 
     render() {
-        const { categorys, products } = this.state;
-        categorys.forEach((category)=>{
+        const { categories, products } = this.state;
+        categories.map((category)=>{
             let arr = [];
-            products.forEach((product)=>{
+            products.map((product)=>{
                 if(product.categ_id.includes(category.id)){
                     arr.push(product);
                 }
             })  
             category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
+            
         })
-        const data = categorys;
+        let data = categories;
          
-        
+        console.log(data);
         return(
             <main className="main">
                 <div className="main-container container">

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 
 import CategoryItems from './category_items';
 
-class LeftContainer extends React.Component {
+class CategoryContainer extends React.Component {
     render() {
         const {data} = this.props;
         return (
             <div className="main-container__left-navmenu">
                 <ul className="main-container__left-navmenu__list">
                     {data.map(item => Object.keys(item.ListProduct).length !== 0 ? (
-                        <CategoryItems categoryKey={item._id} categoryName={item.name} />
+                        <CategoryItems categories={item} key={item._id}/>
                     ) : null)}
                 </ul>
             </div>
@@ -18,4 +18,4 @@ class LeftContainer extends React.Component {
     }
 }
 
-export default LeftContainer;
+export default CategoryContainer;
