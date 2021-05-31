@@ -180,13 +180,14 @@ body{
                 &__top{
                     padding: 15px 20px;
                     border-bottom: 3px solid #f5f5f5;
-                    p{
+                    button{
                         background-color: #f3b27b;
                         text-transform: uppercase;
                         color: #ffffff;
                         text-align: center;
-                        padding: 10px 0;
                         font-size: 12px;
+                        width: 100%;
+                        border: unset;
                     }
                 }
                 &__mid{

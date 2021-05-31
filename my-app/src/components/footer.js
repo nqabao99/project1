@@ -4,6 +4,7 @@ import logo_footer from '../assets/img/logo_footer.png';
 import gov from '../assets/img/gov.png';
 import appstore from '../assets/img/appstore.png';
 import google_play from '../assets/img/google-play-badge.png';
+import Image from './image';
 
 class Footer extends React.Component {
     render() {
@@ -12,7 +13,7 @@ class Footer extends React.Component {
                 <div className="container">
                     <div className="footer-top">
                         <div className="footer-top__logo">
-                            <img src={logo_footer} height="108" alt="logo footer" />
+                            <Image src={logo_footer} height="108" alt="logo footer" />
                             <div className="footer-top__logo-icon">
                                 <a href="#"><i className="fa fa-facebook-f"></i></a>
                                 <a href="#"><i className="fa fa-instagram"></i></a>
@@ -29,13 +30,17 @@ class Footer extends React.Component {
                                 </li>
                             </ul>
                             <a href="#">
-                                <img src={gov} alt="logo bo cong thuong" width="200" />
+                                <Image src={gov} alt="logo bo cong thuong" width="200" />
                             </a>
                         </div>
                         <div className="footer-top__app">
                             <h5 className="footer-top__app-title footer-title">ỨNG DỤNG THE COFFEE HOUSE</h5>
-                            <a href="#"><img src={appstore} alt="appstore" /></a>
-                            <a href="#"><img src={google_play} alt="google play" /></a>
+                            <a href="#">
+                                <Image src={appstore} alt="appstore" />
+                            </a>
+                            <a href="#">
+                                <Image src={google_play} alt="google play" />
+                            </a>
                         </div>
                         <div className="footer-top__contact">
                             <h5 className="footer-top__contac-title footer-title">ỨNG DỤNG THE COFFEE HOUSE</h5>
