@@ -24,6 +24,13 @@ body{
         border-color: #b2b2b2;
     }
 }
+
+.active{
+    color: $main-color !important;
+    border-bottom: 2px solid $main-color !important;
+    display: block;
+}
+
 .header{
     background-color: #ffffff;
     position: fixed;
@@ -97,9 +104,16 @@ body{
                     }
                     &__items{
                         padding: 10px 20px;
+                        cursor: pointer;
                         a{
                             color: #999;
-                            font-size: 12px;     
+                            font-size: 12px;    
+                            line-height: 14px;
+                            transition: all .3s;
+                            &:hover{
+                                color: #333333;      
+                            }
+                           
                         }
                     }
                 }
@@ -128,6 +142,10 @@ body{
                     }
                 }
                 .category{
+                    padding-top: 20px;
+                    &:first-of-type{
+                        padding-top: 0;
+                    }
                     &-name{
                         color: #333333;
                         font-size: 14px;
