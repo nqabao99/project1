@@ -9,44 +9,45 @@ import CartContainer from './cart_container';
 
 class Main extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            categories: [],
-            products: []
-        };
-    }
-    componentDidMount() {
-        fetch('https://api.thecoffeehouse.com/api/v2/category/web')
-            .then((response) => response.json())
-            .then(result => {
-                this.setState({ categories: result });
-            });
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         categories: [],
+    //         products: []
+    //     };
+    // }
+    // componentDidMount() {
+    //     fetch('https://api.thecoffeehouse.com/api/v2/category/web')
+    //         .then((response) => response.json())
+    //         .then(result => {
+    //             this.setState({ categories: result });
+    //         });
 
-        fetch('https://api.thecoffeehouse.com/api/v2/menu')
-            .then((response) => response.json())
-            .then(result => {
-                this.setState({ products: result.data });
-            });
+    //     fetch('https://api.thecoffeehouse.com/api/v2/menu')
+    //         .then((response) => response.json())
+    //         .then(result => {
+    //             this.setState({ products: result.data });
+    //         });
 
 
-    }
+    // }
 
     render() {
-        const { categories, products } = this.state;
-        categories.map((category) => {
-            let arr = [];
-            products.map((product) => {
-                if (product.categ_id.includes(category.id)) {
-                    arr.push(product);
-                }
-            })
+        // const { categories, products } = this.state;
+        // categories.map((category) => {
+        //     let arr = [];
+        //     products.map((product) => {
+        //         if (product.categ_id.includes(category.id)) {
+        //             arr.push(product);
+        //         }
+        //     })
 
-            category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
+        //     category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
 
-        })
-        let data = categories;
+        // })
+        // let data = categories;
 
+        let {data} = this.props;
 
         return (
             <main className="main">

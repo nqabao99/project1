@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProductItems from './product_items';
 import SearchInput from './search_input';
 
-class LeftContainer extends React.Component {
+class ProductContainer extends React.Component {
     render() {
         const { data } = this.props;
         return (
@@ -27,4 +27,4 @@ class LeftContainer extends React.Component {
     }
 }
 
-export default LeftContainer;
+export default ProductContainer;
