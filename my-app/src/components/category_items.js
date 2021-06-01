@@ -11,10 +11,9 @@ class CategoryItems extends React.Component {
                 <Link activeClass="active"
                     to={categories._id}
                     spy={true}
-                    smooth={true}
                     hashSpy={true}
                     offset={-60}
-                    duration={700}
+                    duration={500}
                 >
                     {categories.name}
                 </Link>

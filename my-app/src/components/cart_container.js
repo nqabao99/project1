@@ -17,7 +17,7 @@ class Cart extends React.Component {
                         <p className="color-33">Cộng món</p>
                         <div className="total">
                             <p className="color-33">Vận chuyển</p>
-                            <Currency className="color-33" price="0" />
+                            <Currency className="color-33" price="10000" />
                         </div>
                         <form className="main-cart__mid-form" action="#">
                             <SearchInput type="text"  placeholder="Nhập mã ưu đãi tại đây"/>
@@ -27,7 +27,7 @@ class Cart extends React.Component {
                     <div className="main-cart__bot">
                         <div className="total">
                             <p>Tổng cộng</p>
-                            <Currency price="0" />
+                            <Currency price="10000" />
                         </div>
                     </div>
                 </div>

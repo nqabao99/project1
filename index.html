@@ -9,70 +9,15 @@
 <body>
     
     <script>
-        let category =  [
-            {
-                id: 1,
-                name: 'phổ biến'
-            },
-            {
-                id: 2,
-                name: 'cafe'
-            },
-            {
-                id: 3,
-                name: 'bia'
-            },
-            {
-                id: 4,
-                name: 'my'
-            }
-        ]
-
-        let product = [
-            {
-                id_product: 1,
-                name: 'cafe olong',
-                categ_id: [
-                    1,2
-                ]
-            },
-            {
-                id_product: 2,
-                name: 'nước lọc',
-                categ_id: [
-                    2,3
-                ]
-            },
-            {
-                id_product: 3,
-                name: 'nước mía',
-                categ_id: [
-                    1,3
-                ]
-            },
-            {
-                id_product: 4,
-                name: 'nước es',
-                categ_id: [
-                    9
-                ]
-            }
-        ]
-        category.forEach((category)=>{
-            let arr = [];
-            product.forEach((product)=>{
-                if(product.categ_id.includes(category.id)){
-                    arr.push(product);
-                }
-            })  
-            category.ListProduct = arr;   
-        })
-        // lengthca = Object.keys(category.ListProduct).length;
-        // console.log(lengthca);
-        console.log(category);
-        
-
-
+       
+        let num = 1234567890;
+        if(typeof num === 'number'){
+            let test1 = String(num);
+            let format = test1.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+        }else{
+            let format = num.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+        }
+        console.log(format) 
 
     </script>
 </body>
