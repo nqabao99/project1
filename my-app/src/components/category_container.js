@@ -8,7 +8,7 @@ class CategoryContainer extends React.Component {
         return (
             <div className="main-container__left-navmenu">
                 <ul className="main-container__left-navmenu__list">
-                    {data.map(item => Object.keys(item.ListProduct).length !== 0 ? (
+                    {data.map(item => item.ListProduct.length !== 0 ? (
                         <CategoryItems categories={item} key={item._id}/>
                     ) : null)}
                 </ul>

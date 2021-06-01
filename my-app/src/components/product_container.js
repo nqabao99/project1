@@ -13,7 +13,7 @@ class LeftContainer extends React.Component {
                     <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" />
                 </form>
                 {
-                    data.map(item => Object.keys(item.ListProduct).length !== 0 ?
+                    data.map(item => item.ListProduct.length !== 0 ?
                         (
                             <div className="category" key={item._id} id={item._id}>
                                 <p className="category-name">{item.name}</p>
