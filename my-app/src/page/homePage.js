@@ -47,8 +47,6 @@ class HomePage extends React.Component {
 
         })
         let data = categories;
-
-        console.log(data);
        
 
         if (!loadCatrgory && !loadProduct) {
