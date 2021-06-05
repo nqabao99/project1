@@ -1,14 +1,14 @@
 #
 1. Chia giao diện thành các component
 ![img](./theme/img/md-reactjs.png)
--Header(màu hồng)
--Main(màu hồng)
+- Header(màu hồng)
+- Main(màu hồng)
     + Category List(màu nâu)
-            + Catrgory Item(Màu xanh biển)
+        + Catrgory Item(Màu xanh biển)
     + Product List(màu nâu)
         + Product items(màu xanh biển)
     + Cart Compoent(màu nâu)
--Footer(màu hồng)
+- Footer(màu hồng)
 - Button(màu đỏ)
 - Input Search (màu vàng)
 - Button Add (màu xanh lá)
