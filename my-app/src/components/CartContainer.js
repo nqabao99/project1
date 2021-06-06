@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import Button from './button';
-import SearchInput from './search_input';
-import Currency from './currency'
+import Button from '../common/Button';
+import SearchInput from '../common/SearchInput';
+import Currency from '../common/Currency'
 
 
 class Cart extends React.Component {
     render() {
-        return(
+        return (
             <div className="main-container__right">
                 <div className="main-cart">
                     <div className="main-cart__top">
@@ -20,7 +20,7 @@ class Cart extends React.Component {
                             <Currency className="color-33" price="10000" />
                         </div>
                         <form className="main-cart__mid-form" action="#">
-                            <SearchInput type="text"  placeholder="Nhập mã ưu đãi tại đây"/>
+                            <SearchInput type="text" placeholder="Nhập mã ưu đãi tại đây" />
                             <Button className="btn-apply" text="Áp dụng" />
                         </form>
                     </div>

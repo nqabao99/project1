@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import '../assets/style.scss';
 
-import Header from '../components/header';
-import Main from '../components/main';
-import Footer from '../components/footer';
+import Header from '../layout/Header';
+import Main from '../layout/Main';
+import Footer from '../layout/Footer';
 
 
 class HomePage extends React.Component {
@@ -21,7 +21,7 @@ class HomePage extends React.Component {
         fetch('https://api.thecoffeehouse.com/api/v2/category/web')
             .then((response) => response.json())
             .then(result => {
-                this.setState({ categories: result,  loadCatrgory: true});
+                this.setState({ categories: result, loadCatrgory: true });
             });
 
         fetch('https://api.thecoffeehouse.com/api/v2/menu')
@@ -33,7 +33,7 @@ class HomePage extends React.Component {
 
 
     render() {
-        const {loadCatrgory, loadProduct, categories, products } = this.state;
+        const { loadCatrgory, loadProduct, categories, products } = this.state;
 
         categories.map((category) => {
             let arr = [];
@@ -46,17 +46,18 @@ class HomePage extends React.Component {
             category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
 
         })
-        let data = categories;
-       
 
+        let data = categories;
+
+        console.log(data);
         if (!loadCatrgory && !loadProduct) {
             return (
                 <div className="loading">
-                    <img  src="https://dalatfairytaleland.com/wp-content/themes/123website/images/loading.gif"/>
+                    <img src="https://dalatfairytaleland.com/wp-content/themes/123website/images/loading.gif" />
                 </div>
-                )
+            )
         } else {
-            return(   
+            return (
                 <div className="home-page">
                     <Header />
                     <Main data={data} />

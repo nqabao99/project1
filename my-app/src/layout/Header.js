@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
 import logo from '../assets/img/logo.png';
-import Button from './button';
-import SearchInput from './search_input';
-import Image from './image';
+import Button from '../common/Button';
+import SearchInput from '../common/SearchInput';
+import Image from '../common/Image';
 
 class Header extends React.Component {
     render() {
-        return(
+        return (
             <header className="header">
                 <div className="header-container">
                     <div className="header-left">
                         <a href="#">
-                            <Image className="header-left__img" src={logo} alt="logo the coffee fouse" width="200"  />
+                            <Image className="header-left__img" src={logo} alt="logo the coffee fouse" width="200" />
                         </a>
                     </div>
                     <div className="header-center">
@@ -22,7 +22,7 @@ class Header extends React.Component {
                         <div className="header-center__form">
                             <form action="#">
                                 <i className="fa fa-map-marker"></i>
-                                <SearchInput type="text"  placeholder="Nhập địa chỉ giao hàng"/>
+                                <SearchInput type="text" placeholder="Nhập địa chỉ giao hàng" />
                             </form>
                         </div>
                     </div>

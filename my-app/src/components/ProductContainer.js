@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import ProductItems from './product_items';
-import SearchInput from './search_input';
+import ProductItems from './ProductItems';
+import SearchInput from '../common/SearchInput';
 
 class ProductContainer extends React.Component {
     render() {

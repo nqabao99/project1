@@ -4,11 +4,11 @@ import logo_footer from '../assets/img/logo_footer.png';
 import gov from '../assets/img/gov.png';
 import appstore from '../assets/img/appstore.png';
 import google_play from '../assets/img/google-play-badge.png';
-import Image from './image';
+import Image from '../common/Image';
 
 class Footer extends React.Component {
     render() {
-        return(
+        return (
             <footer className="footer">
                 <div className="container">
                     <div className="footer-top">
