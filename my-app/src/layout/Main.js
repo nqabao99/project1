@@ -11,11 +11,7 @@ class Main extends React.Component {
 
 
     render() {
-
         let { data } = this.props;
-
-
-
         return (
             <main className="main">
                 <div className="main-container container">

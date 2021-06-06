@@ -4,6 +4,7 @@ import '../assets/style.scss';
 import Header from '../layout/Header';
 import Main from '../layout/Main';
 import Footer from '../layout/Footer';
+import NoneData from './NoneData';
 
 
 class HomePage extends React.Component {
@@ -11,56 +12,49 @@ class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            categories: [],
-            products: [],
-            loadCatrgory: false,
-            loadProduct: false
+            newData: [],
+            loading: true
         };
     }
     componentDidMount() {
+
         fetch('https://api.thecoffeehouse.com/api/v2/category/web')
             .then((response) => response.json())
-            .then(result => {
-                this.setState({ categories: result, loadCatrgory: true });
+            .then(categories => {
+                fetch('https://api.thecoffeehouse.com/api/v2/menu')
+                    .then((response) => response.json())
+                    .then(products => {
+                        categories.map((category) => {
+                            let arr = [];
+                            products.data.map((product) => {
+                                if (product.categ_id.includes(category.id)) {
+                                    arr.push(product);
+                                }
+                            })
+                            category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
+                        })
+
+                        this.setState({
+                            newData: categories,
+                            loading: false
+                        })
+                    });
             });
 
-        fetch('https://api.thecoffeehouse.com/api/v2/menu')
-            .then((response) => response.json())
-            .then(result => {
-                this.setState({ products: result.data, loadProduct: true });
-            });
     }
 
 
     render() {
-        const { loadCatrgory, loadProduct, categories, products } = this.state;
-
-        categories.map((category) => {
-            let arr = [];
-            products.map((product) => {
-                if (product.categ_id.includes(category.id)) {
-                    arr.push(product);
-                }
-            })
-
-            category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
-
-        })
-
-        let data = categories;
-
-        console.log(data);
-        if (!loadCatrgory && !loadProduct) {
+        const { newData, loading } = this.state;
+        if (loading) {
             return (
-                <div className="loading">
-                    <img src="https://dalatfairytaleland.com/wp-content/themes/123website/images/loading.gif" />
-                </div>
+                <NoneData />
             )
         } else {
             return (
                 <div className="home-page">
                     <Header />
-                    <Main data={data} />
+                    <Main data={newData} />
                     <Footer />
                 </div>
             )

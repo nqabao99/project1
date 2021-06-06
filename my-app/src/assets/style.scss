@@ -1,3 +1,4 @@
+
 $main-color: #ea8025;
 .home-page{
     position: relative;
@@ -13,6 +14,7 @@ body{
     margin: auto;
 }
 .loading{
+    position: relative;
     z-index: 900;
     min-height: 100vh;
     width: 100%;
@@ -164,8 +166,8 @@ body{
                 }
                 .category{
                     padding-top: 20px;
-                    &:first-of-type{
-                        // padding-top: 80px;
+                    &:last-child{
+                        margin-bottom: 448px;
                     }
                     &-name{
                         color: #333333;
