@@ -39,6 +39,7 @@ class HomePage extends React.Component {
                     .then((response) => response.json())
                     .then(products => {
                         this.mergeData(categories, products);
+                        
                         this.setState({
                             newData: categories,
                             loading: false
