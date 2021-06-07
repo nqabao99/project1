@@ -13,8 +13,11 @@
     }
 }
 .liloading{
-    margin: 10px 0;
+    margin-bottom: 10px;
     height: 30px;
+    &:last-child{
+        margin-bottom: 0;
+    }
 }
 .imgloading{
     width: 80px;
@@ -34,6 +37,9 @@
     &:last-child{
         margin-bottom: 0;
     }
+}
+.mt20{
+    margin-top: 20px;
 }
 
 

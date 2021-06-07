@@ -16,49 +16,47 @@ class HomePage extends React.Component {
             loading: true
         };
     }
-    componentDidMount() {
 
+    mergeData = (categories, products) => {
+        categories.map((category) => {
+            let arr = [];
+            products.data.map((product) => {
+                if (product.categ_id.includes(category.id)) {
+                    arr.push(product);
+                }
+            })
+            category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
+        })
+        return categories;
+    }
+
+
+    componentDidMount() {
         fetch('https://api.thecoffeehouse.com/api/v2/category/web')
             .then((response) => response.json())
             .then(categories => {
                 fetch('https://api.thecoffeehouse.com/api/v2/menu')
                     .then((response) => response.json())
                     .then(products => {
-                        categories.map((category) => {
-                            let arr = [];
-                            products.data.map((product) => {
-                                if (product.categ_id.includes(category.id)) {
-                                    arr.push(product);
-                                }
-                            })
-                            category.ListProduct = arr; // Tạo ra key ListProduct trong category để hứng giá trị của listProduct
-                        })
-
+                        this.mergeData(categories, products);
                         this.setState({
                             newData: categories,
                             loading: false
                         })
                     });
             });
-
-    }
+        }
 
 
     render() {
         const { newData, loading } = this.state;
-        if (loading) {
-            return (
-                <NoneData />
-            )
-        } else {
-            return (
-                <div className="home-page">
-                    <Header />
-                    <Main data={newData} />
-                    <Footer />
-                </div>
-            )
-        }
+        return (
+            <div className="home-page">
+                <Header />
+                <Main loading={loading} data={newData} />
+                <Footer />
+            </div>
+        )
     }
 }
 
