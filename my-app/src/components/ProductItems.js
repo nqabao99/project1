@@ -6,8 +6,8 @@ import ButtonAdd from '../common/ButtonAdd';
 
 class Product extends React.Component {
 
-    renderProduct = item =>{
-        return(
+    renderProduct = item => {
+        return (
             <li className="category-product__items" key={item._id}>
                 <Image className="category-product__items-img" src={item.image} alt={`ảnh ${item.product_name}`} />
                 <div className="category-product__items-info">
@@ -18,37 +18,37 @@ class Product extends React.Component {
                 <ButtonAdd />
             </li>
         )
-        
+
     }
 
 
     render() {
-        const { index, categories, search } = this.props;
-        const ListProduct = categories.ListProduct.filter(item =>{
-            return item.product_name.toLowerCase().indexOf( search.toLowerCase()) !== -1;
+        const { categories, search } = this.props;
+        const ListProduct = categories.ListProduct.filter(item => {
+            return item.product_name.toLowerCase().includes(search.toLowerCase());
         })
 
-        console.log(ListProduct.length);
-       
+        // console.log(ListProduct.length);
+
         if (ListProduct.length === 0) {
             return null;
         }
 
-        return(
+        return (
             <div className="category" id={categories._id}>
                 <p className="category-name">{categories.name}</p>
                 <ul className="category-product__list">
                     {
-                        ListProduct.map(item =>{
+                        ListProduct.map(item => {
                             return this.renderProduct(item);
                         })
                     }
                 </ul>
             </div>
         )
-        
-        
-        
+
+
+
     }
 }
 

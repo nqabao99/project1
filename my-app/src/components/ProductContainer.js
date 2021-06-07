@@ -15,8 +15,8 @@ class ProductContainer extends React.Component {
 
 
 
-    Search = e =>{
-        this.setState({search: e.target.value})
+    handleSearch = e => {
+        this.setState({ search: e.target.value })
     }
 
     render() {
@@ -25,7 +25,7 @@ class ProductContainer extends React.Component {
             <div className="main-container__left-product">
                 <form className="main-container__left-product__form" action="#">
                     <i className="fa fa-search"></i>
-                    <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" onChange={this.Search} />
+                    <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" onChange={this.handleSearch} />
                 </form>
                 {
                     data.map(item => item.ListProduct.length !== 0 ?

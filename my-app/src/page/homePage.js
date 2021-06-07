@@ -4,7 +4,7 @@ import '../assets/style.scss';
 import Header from '../layout/Header';
 import Main from '../layout/Main';
 import Footer from '../layout/Footer';
-import NoneData from './NoneData';
+
 
 
 class HomePage extends React.Component {
@@ -39,14 +39,14 @@ class HomePage extends React.Component {
                     .then((response) => response.json())
                     .then(products => {
                         this.mergeData(categories, products);
-                        
+
                         this.setState({
                             newData: categories,
                             loading: false
                         })
                     });
             });
-        }
+    }
 
 
     render() {

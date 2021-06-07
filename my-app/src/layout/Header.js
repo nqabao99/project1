@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import logo from '../assets/img/logo.png';
 import Button from '../common/Button';
-import SearchInput from '../common/SearchInput';
 import Image from '../common/Image';
+import SearchAddress from '../components/SearchAddress'
 
 class Header extends React.Component {
     render() {
@@ -20,10 +20,7 @@ class Header extends React.Component {
                             <Button text="Giao ngay" />
                         </div>
                         <div className="header-center__form">
-                            <form action="#">
-                                <i className="fa fa-map-marker"></i>
-                                <SearchInput type="text" placeholder="Nhập địa chỉ giao hàng" />
-                            </form>
+                            <SearchAddress />
                         </div>
                     </div>
                     <div className="header-right">
