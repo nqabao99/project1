@@ -9,15 +9,17 @@
 <body>
     
     <script>
-       
-        let num = 1234567890;
-        if(typeof num === 'number'){
-            let test1 = String(num);
-            let format = test1.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-        }else{
-            let format = num.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-        }
-        console.log(format) 
+
+    let str = "HÀ NỘI, HOÀN KIẾM, HANOI, VIETNAM";
+
+    // Sử dụng split() để tách chuỗi -> từ
+    let arr = str.split(", ");
+
+    console.log(arr[0]); 
+
+    arr.shift();
+    
+    console.log(arr.join(", "));
 
     </script>
 </body>

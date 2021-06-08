@@ -24,7 +24,7 @@ class Header extends React.Component {
                         </div>
                     </div>
                     <div className="header-right">
-                        <Button text="Đăng nhập" />
+                        <Button text="Đăng nhập"/>
                     </div>
                 </div>
             </header>
