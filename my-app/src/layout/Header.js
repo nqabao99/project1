@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import logo from '../assets/img/logo.png';
 import Button from '../common/Button';
@@ -24,7 +24,7 @@ class Header extends React.Component {
                         </div>
                     </div>
                     <div className="header-right">
-                        <Button text="Đăng nhập"/>
+                        <Button text="Đăng nhập" />
                     </div>
                 </div>
             </header>

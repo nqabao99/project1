@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 class ButtonAdd extends React.Component {
-    render(){
+    render() {
         return (
             <i className="fa fa-plus-circle"></i>
         )

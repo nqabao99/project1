@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 
 import CategoryContainer from '../components/CategoryContainer';
@@ -12,16 +12,16 @@ import PlacehoderLoading from '../common/PlacehoderLoading'
 
 class Main extends React.Component {
     render() {
-        let {loading,  data } = this.props;
+        let { loading, data } = this.props;
         if (loading) {
             return (
                 <PlacehoderLoading />
             )
-        }else if(data.length === 0){
+        } else if (data.length === 0) {
             return (
                 <NoneData />
             )
-        }else{
+        } else {
             return (
                 <main className="main">
                     <div className="main-container container">

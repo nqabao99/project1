@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Currency from '../common/Currency';
 import Image from '../common/Image';
 import ButtonAdd from '../common/ButtonAdd';
@@ -6,7 +6,7 @@ import ButtonAdd from '../common/ButtonAdd';
 
 class Product extends React.Component {
 
-    renderProduct = item => {
+    renderProduct = (item) => {
         return (
             <li className="category-product__items" key={item._id}>
                 <Image className="category-product__items-img" src={item.image} alt={`ảnh ${item.product_name}`} />

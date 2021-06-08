@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import logo_footer from '../assets/img/logo_footer.png';
 import gov from '../assets/img/gov.png';

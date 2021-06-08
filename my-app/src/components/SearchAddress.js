@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SearchInput from '../common/SearchInput';
 import AddressItem from '../common/AddressItem';
 import NoDataAddressItem from '../common/NoDataAddressItem';
@@ -49,8 +49,7 @@ class SearchAddress extends React.Component {
 
     render() {
         const { close, dataSearch, dataAddress } = this.state;
-        console.log("dataSearch:" + dataSearch);
-        console.log("dataAddress:" + dataAddress.length);
+
         return (
             <form action="#" className="seachAdd" >
                 <i className="fa fa-map-marker icon-marker"></i>

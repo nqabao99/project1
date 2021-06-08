@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import ProductItems from './ProductItems';
 import SearchInput from '../common/SearchInput';
@@ -27,10 +27,10 @@ class ProductContainer extends React.Component {
                     <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" onChange={this.handleSearch} />
                 </form>
                 {
-                    data.map(item => item.ListProduct.length !== 0 ?
-                        (
-                            <ProductItems key={item._id} categories={item} search={this.state.search} />
-                        ) : null)
+                    data.map(item =>
+                    (
+                        <ProductItems key={item._id} categories={item} search={this.state.search} />
+                    ))
                 }
             </div>
         );
