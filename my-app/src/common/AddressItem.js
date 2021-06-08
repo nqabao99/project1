@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
 class AddressItem extends React.Component {
-    
-    getData = (e) => {
+
+    setData = (e) => {
         e.preventDefault();
-        this.props.parentCallback(this.props.data);
+        this.props.setDataInput(this.props.data);
     }
 
     render() {
@@ -13,7 +13,7 @@ class AddressItem extends React.Component {
         let first = arr[0];
         arr.shift(); //xoá phần tử đầu
         return (
-            <li onClick={this.getData}>
+            <li onClick={this.setData}>
                 <div className="icon">
                     <i className="fa fa-map-marker"></i>
                 </div>

@@ -49,6 +49,7 @@ class HomePage extends React.Component {
     }
 
 
+
     render() {
         const { newData, loading } = this.state;
         return (

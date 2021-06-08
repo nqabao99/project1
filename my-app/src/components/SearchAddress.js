@@ -8,59 +8,70 @@ class SearchAddress extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataAdd: [],
-            checkForData: false
+            dataSearch: "",
+            dataAddress: [],
+            close: false
         };
     }
-    
 
-    handleChange = (e)=>{
-        let dataInput = e.target.value;
-        fetch(`https://order.thecoffeehouse.com/api/location?address=${dataInput}`)
+
+    handleChange = (e) => {
+        this.setState({
+            dataSearch: e.target.value
+        })
+        fetch(`https://order.thecoffeehouse.com/api/location?address=${this.state.dataSearch}`)
             .then((response) => response.json())
             .then(data => {
-                if(data.status === "FAIL"){
+                if (data.status === "OK") {
                     this.setState({
-                        checkForData: false
+                        dataAddress: data.predictions
                     })
-                }else{
+                } else {
                     this.setState({
-                        checkForData: true,
-                        dataAdd: data.predictions          
+                        dataAddress: []
                     })
-                    
                 }
             });
     }
 
-    callbackFunction = (childData) => {
-        alert(childData);
+    setDataInput = (childData) => {
+        this.setState({
+            dataSearch: childData,
+            close: true
+        })
     }
-    
+
+    OpenListAddress = () => {
+        this.setState({
+            close: false
+        })
+    }
+
     render() {
-        const { dataAdd, checkForData } = this.state;
-        
+        const { close, dataSearch, dataAddress } = this.state;
+        console.log("dataSearch:" + dataSearch);
+        console.log("dataAddress:" + dataAddress.length);
         return (
-            <form action="#" className="seachAdd">
-                <i  className="fa fa-map-marker icon-marker"></i>
-                <SearchInput type="text" placeholder="Nhập địa chỉ giao hàng" onChange={this.handleChange} />
-                <div className="seachAdd-container" >
+            <form action="#" className="seachAdd" >
+                <i className="fa fa-map-marker icon-marker"></i>
+                <SearchInput type="text" placeholder="Nhập địa chỉ giao hàng" value={dataSearch} onChange={this.handleChange} onClick={this.OpenListAddress} />
+                <div className={close ? 'close seachAdd-container' : 'seachAdd-container'} >
                     <ul className="seachAdd-list">
                         {
-                            checkForData 
-                            ? dataAdd.length === 0 
-                                ? 
-                                    <NoDataAddressItem data="Không tìm thấy" /> 
-                                : 
-                                    dataAdd.map(item =>
-                                        (
-                                            <AddressItem parentCallback={this.callbackFunction} key={item.id} data={item.description} />
-                                        ))           
-                            : null      
+                            dataSearch.length !== 0
+                                ? dataAddress.length === 0
+                                    ?
+                                    <NoDataAddressItem data="Không tìm thấy" />
+                                    :
+                                    dataAddress.map(item =>
+                                    (
+                                        <AddressItem setDataInput={this.setDataInput} key={item.id} data={item.description} />
+                                    ))
+                                : null
                         }
                     </ul>
                 </div>
-            </form>
+            </form >
         )
     }
 }
