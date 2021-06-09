@@ -9,7 +9,8 @@ class ProductContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            search: ""
+            search: "",
+            bao: false
         };
     }
 
@@ -18,8 +19,12 @@ class ProductContainer extends React.Component {
         this.setState({ search: e.target.value })
     }
 
+    
+
     render() {
         const { data } = this.props;
+
+
         return (
             <div className="main-container__left-product">
                 <form className="main-container__left-product__form" action="#">
