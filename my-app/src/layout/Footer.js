@@ -1,10 +1,10 @@
 import React from 'react';
-
-import logo_footer from '../assets/img/logo_footer.png';
-import gov from '../assets/img/gov.png';
 import appstore from '../assets/img/appstore.png';
 import google_play from '../assets/img/google-play-badge.png';
+import gov from '../assets/img/gov.png';
+import logo_footer from '../assets/img/logo_footer.png';
 import Image from '../common/Image';
+
 
 class Footer extends React.Component {
     render() {
@@ -15,30 +15,30 @@ class Footer extends React.Component {
                         <div className="footer-top__logo">
                             <Image src={logo_footer} height="108" alt="logo footer" />
                             <div className="footer-top__logo-icon">
-                                <a href="#"><i className="fa fa-facebook-f"></i></a>
-                                <a href="#"><i className="fa fa-instagram"></i></a>
+                                <a href="/#"><i className="fa fa-facebook-f"></i></a>
+                                <a href="/#"><i className="fa fa-instagram"></i></a>
                             </div>
                         </div>
                         <div className="footer-top__introduct">
                             <h5 className="footer-top__introduct-title footer-title">Về chúng tôi <span>công ty cổ phần thương mại dịch vụ trà cà phê vn</span></h5>
                             <ul className="footer-top__introduct-list">
                                 <li className="footer-top__introduct-items">
-                                    <a href="#">Điều khoản và điệu kiện</a>
+                                    <a href="/#">Điều khoản và điệu kiện</a>
                                 </li>
                                 <li className="footer-top__introduct-items">
-                                    <a href="#">Chính sách bảo mật</a>
+                                    <a href="/#">Chính sách bảo mật</a>
                                 </li>
                             </ul>
-                            <a href="#">
+                            <a href="/#">
                                 <Image src={gov} alt="logo bo cong thuong" width="200" />
                             </a>
                         </div>
                         <div className="footer-top__app">
                             <h5 className="footer-top__app-title footer-title">ỨNG DỤNG THE COFFEE HOUSE</h5>
-                            <a href="#">
+                            <a href="/#">
                                 <Image src={appstore} alt="appstore" />
                             </a>
-                            <a href="#">
+                            <a href="/#">
                                 <Image src={google_play} alt="google play" />
                             </a>
                         </div>

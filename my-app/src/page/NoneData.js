@@ -1,7 +1,6 @@
 import React from 'react';
 import '../assets/style.scss';
 
-
 import PlacehoderLoading from '../common/PlacehoderLoading'
 
 class NoneData extends React.Component {
