@@ -10,7 +10,7 @@ class ProductContainer extends React.Component {
         super(props);
         this.state = {
             search: "",
-            bao: false
+            arrs: []
         };
     }
 
@@ -32,10 +32,10 @@ class ProductContainer extends React.Component {
                     <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" onChange={this.handleSearch} />
                 </form>
                 {
-                    data.map(item =>
+                    data.map(item => item.ListProduct.length !== 0 ?
                     (
-                        <ProductItems key={item._id} categories={item} search={this.state.search} />
-                    ))
+                        <ProductItems arrs={this.state.arrs} key={item._id} categories={item} search={this.state.search} />
+                    ) : null)
                 }
             </div>
         );

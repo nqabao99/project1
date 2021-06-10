@@ -28,8 +28,6 @@ class Product extends React.Component {
             return item.product_name.toLowerCase().includes(search.toLowerCase());
         })
 
-        // console.log(ListProduct.length);
-
         if (ListProduct.length === 0) {
             return null;
         }
