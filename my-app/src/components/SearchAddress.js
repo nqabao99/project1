@@ -19,7 +19,7 @@ class SearchAddress extends React.Component {
         this.setState({
             dataSearch: e.target.value
         })
-    
+
         fetch(`https://order.thecoffeehouse.com/api/location?address=${this.state.dataSearch}`)
             .then((response) => response.json())
             .then(data => {
@@ -52,9 +52,9 @@ class SearchAddress extends React.Component {
         const { close, dataSearch, dataAddress } = this.state;
 
         return (
-            <form onSubmit={(e)=>{e.preventDefault()}} className="seachAdd" >
+            <form onSubmit={(e) => { e.preventDefault() }} className="seachAdd" >
                 <i className="fa fa-map-marker icon-marker"></i>
-                <SearchInput type="text" placeholder="Nhập địa chỉ giao hàng" value={dataSearch} onChange={this.handleChange} onClick={this.OpenListAddress} />
+                <SearchInput className="seachAddInput" type="text" placeholder="Nhập địa chỉ giao hàng" value={dataSearch} onChange={this.handleChange} onClick={this.OpenListAddress} />
                 <div className={close ? 'close seachAdd-container' : 'seachAdd-container'} >
                     <ul className="seachAdd-list">
                         {
@@ -65,7 +65,7 @@ class SearchAddress extends React.Component {
                                     :
                                     dataAddress.map(item =>
                                     (
-                                        <AddressItem onClick={()=>this.setDataInput(item.description)}  key={item.place_id} data={item.description} />
+                                        <AddressItem onClick={() => this.setDataInput(item.description)} key={item.place_id} data={item.description} />
                                     ))
                                 : null
                         }

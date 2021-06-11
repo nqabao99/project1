@@ -144,6 +144,7 @@ body {
             &-product {
                 width: calc(100% - 291px - 40px);
                 margin: 0 20px;
+                margin-bottom: 450px;
                 &__form {
                     position: relative;
                     // margin-bottom: -80px;
@@ -166,8 +167,22 @@ body {
                         font-size: 20px;
                     }
                 }
+                .noneProduct {
+                    margin-top: 50px;
+                    display: flex;
+                    justify-content: center;
+                    p {
+                        color: $main-color;
+                        font-size: 21px;
+                        max-width: 355px;
+                        text-align: center;
+                    }
+                }
                 .category {
                     padding-top: 20px;
+                    & ~ .noneProduct {
+                        display: none;
+                    }
                     &:last-child {
                         margin-bottom: 448px;
                     }
@@ -183,6 +198,7 @@ body {
                             position: relative;
                             margin-bottom: 2px;
                             transition: all 0.3s;
+
                             &:hover {
                                 box-shadow: 3px 3px 6px 0 #e5e5e5;
                             }

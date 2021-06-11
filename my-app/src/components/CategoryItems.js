@@ -3,9 +3,10 @@ import React from 'react';
 
 class CategoryItems extends React.Component {
     render() {
-        const { categories, bao } = this.props;
+        const { data, categories } = this.props;
+        console.log(data);
         return (
-            <li className={`main-container__left-navmenu__items ${this.props.className}`}><a  onClick={this.props.onClick} href={`#${categories._id}`}>{categories.name}</a></li>
+            <li id={`at${categories._id}`} className={data._id === categories._id ? 'active main-container__left-navmenu__items' : 'main-container__left-navmenu__items'}><a href={`#${categories._id}`}>{categories.name}</a></li>
         );
     }
 }

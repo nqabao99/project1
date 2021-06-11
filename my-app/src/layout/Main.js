@@ -49,9 +49,17 @@ class Main extends React.Component {
             });
     }
 
+    getatId = (data) => {
+        let a = document.querySelectorAll('.active');
+        if (a.length > 0) {
+            document.querySelector('.active').classList.remove('active');
+        }
+        document.getElementById(`at${data}`).classList.add('active');
+    }
 
 
     render() {
+
         const { newData, loading } = this.state;
 
         if (loading) {
@@ -68,7 +76,7 @@ class Main extends React.Component {
                     <div className="main-container container">
                         <div className="main-container__left">
                             <CategoryContainer data={newData} />
-                            <ProductContainer data={newData} />
+                            <ProductContainer getatId={this.getatId} data={newData} />
                         </div>
                         <CartContainer />
                     </div>
