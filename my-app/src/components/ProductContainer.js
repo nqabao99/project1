@@ -25,22 +25,20 @@ class ProductContainer extends React.Component {
 
         arr.forEach(item =>
             document.getElementById(item.id).offsetTop <= check && check < document.getElementById(item.id).offsetTop + document.getElementById(item.id).offsetHeight ?
-                this.handleActive(item.id) : null
+                this.getId(item.id) : null
         )
-
     }
 
-    handleActive = (data) => {
-        this.props.getatId(data);
+    getId = (id) => {
+        this.props.getatId(id);
     }
-
 
     render() {
         const { data } = this.props;
         window.addEventListener("scroll", this.handleOnScroll)
 
         return (
-            <div id="bao" className="main-container__left-product">
+            <div className="main-container__left-product">
                 <form className="main-container__left-product__form" action="#">
                     <i className="fa fa-search"></i>
                     <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" onChange={this.handleSearch} />
@@ -48,7 +46,7 @@ class ProductContainer extends React.Component {
                 {
                     data.map(item => item.ListProduct.length !== 0 ?
                         (
-                            <ProductItems className={`bao${item.id}`} key={item._id} categories={item} search={this.state.search} />
+                            <ProductItems key={item._id} categories={item} search={this.state.search} />
                         ) : null)
                 }
                 <div className="noneProduct">

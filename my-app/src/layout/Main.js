@@ -49,12 +49,13 @@ class Main extends React.Component {
             });
     }
 
-    getatId = (data) => {
-        let a = document.querySelectorAll('.active');
-        if (a.length > 0) {
+    getatId = (id) => {
+        let check = document.querySelectorAll('.active');
+        console.log(check.length);
+        if (check.length > 0) {
             document.querySelector('.active').classList.remove('active');
         }
-        document.getElementById(`at${data}`).classList.add('active');
+        document.getElementById(`at${id}`).classList.add('active');
     }
 
 
