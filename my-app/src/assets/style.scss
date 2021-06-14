@@ -157,7 +157,7 @@ body {
                         border: 1px solid #b2b2b2;
                         outline-color: $main-color;
                     }
-                    .fa-search {
+                    i {
                         position: absolute;
                         left: 10px;
                         top: 50%;
@@ -223,7 +223,7 @@ body {
                             }
                             .fa-plus-circle {
                                 position: absolute;
-                                bottom: 10px;
+                                bottom: 5px;
                                 right: 13px;
                                 font-size: 30px;
                                 color: $main-color;

@@ -6,6 +6,9 @@ import ProductContainer from '../components/ProductContainer';
 import NoneData from '../page/NoneData';
 
 
+
+import ProductOption from '../components/ProductOption';
+
 class Main extends React.Component {
 
     constructor(props) {
@@ -53,7 +56,7 @@ class Main extends React.Component {
 
     getatId = (id) => {
         let check = document.querySelectorAll('.active');
-        console.log(check.length);
+
         if (check.length > 0) {
             document.querySelector('.active').classList.remove('active');
         }
@@ -62,8 +65,8 @@ class Main extends React.Component {
 
 
     render() {
-
         const { active, newData, loading } = this.state;
+
 
         if (loading) {
             return (
@@ -83,6 +86,7 @@ class Main extends React.Component {
                         </div>
                         <CartContainer />
                     </div>
+                    <ProductOption />
                 </main>
             );
         }
