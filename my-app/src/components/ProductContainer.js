@@ -33,9 +33,16 @@ class ProductContainer extends React.Component {
         this.props.getatId(id);
     }
 
+    componentDidMount() {
+        window.addEventListener("scroll", this.handleOnScroll)
+    }
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.handleOnScroll)
+    }
+
     render() {
         const { data } = this.props;
-        window.addEventListener("scroll", this.handleOnScroll)
+
 
         return (
             <div className="main-container__left-product">

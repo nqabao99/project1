@@ -12,7 +12,8 @@ class Main extends React.Component {
         super(props);
         this.state = {
             newData: [],
-            loading: true
+            loading: true,
+            active: null
         };
     }
 
@@ -43,7 +44,8 @@ class Main extends React.Component {
 
                         this.setState({
                             newData: categories,
-                            loading: false
+                            loading: false,
+                            active: categories[0]._id
                         })
                     });
             });
@@ -61,7 +63,7 @@ class Main extends React.Component {
 
     render() {
 
-        const { newData, loading } = this.state;
+        const { active, newData, loading } = this.state;
 
         if (loading) {
             return (
@@ -76,7 +78,7 @@ class Main extends React.Component {
                 <main className="main">
                     <div className="main-container container">
                         <div className="main-container__left">
-                            <CategoryContainer data={newData} />
+                            <CategoryContainer active={active} data={newData} />
                             <ProductContainer getatId={this.getatId} data={newData} />
                         </div>
                         <CartContainer />

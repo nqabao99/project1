@@ -33,7 +33,7 @@ class Product extends React.Component {
         }
 
         return (
-            <div className="category" id={categories._id} onScroll={this.props.onScroll}>
+            <div className="category" id={categories._id}>
                 <p className="category-name">{categories.name}</p>
                 <ul className="category-product__list">
                     {
