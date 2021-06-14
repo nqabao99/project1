@@ -7,7 +7,7 @@ import NoneData from '../page/NoneData';
 
 
 
-import ProductOption from '../components/ProductOption';
+
 
 class Main extends React.Component {
 
@@ -64,6 +64,7 @@ class Main extends React.Component {
     }
 
 
+
     render() {
         const { active, newData, loading } = this.state;
 
@@ -86,7 +87,6 @@ class Main extends React.Component {
                         </div>
                         <CartContainer />
                     </div>
-                    <ProductOption />
                 </main>
             );
         }

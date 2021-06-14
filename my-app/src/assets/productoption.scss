@@ -1,23 +1,43 @@
+@keyframes open{
+    from{
+        top: 0;
+    }
+    to{
+        top: 7%;
+    }
+}
+@keyframes close{
+    from{
+        top: 7%;
+    }
+    to{
+        top: 0;
+    }
+}
+
 .overlay{
     position: fixed;
     height: 100%;
     width: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.6);
+    background-color: rgba($color: #000000, $alpha: 0.1);
     top: 0;
+    left: 0;
     overflow-y: auto;
     z-index: 20;
+    visibility: hidden;
+    transition: all .3s;
     .product-option{
         position: absolute;
         width: 630px;
-        height: 360px;
         background-color: #ffffff;
-        top: 7%;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 30;
         &__top{
             padding: 15px 30px;
             border-bottom: 1px solid #e5e5e5;
             display: flex;
+            position: relative;
             img{
                 width: 80px;
             }
@@ -27,6 +47,16 @@
                     font-size: 14px;
                     color: rgb(51, 51, 51);
                     margin-bottom: 5px;
+                }
+            }
+            .fa-times{
+                position: absolute;
+                right: 15px;
+                color: #999;
+                cursor: pointer;
+                transition: all .3s;
+                &:hover{
+                    color: rgb(51, 51, 51);
                 }
             }
         }
@@ -65,5 +95,60 @@
                 
             }
         }
+        &__bot{
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &-left{
+                display: flex;
+                align-items: center;
+                i{
+                    color: #EA8025;
+                    font-size: 30px;
+                    cursor: pointer;
+                }
+                span{
+                    font-size: 14px;
+                    color: #000000;
+                    margin: 0 10px;
+                }
+            }
+            &-right{
+                width: 270px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                background-color: #ea8025;
+                
+                &:hover{
+                    transition: all .3s;
+                    background-color: #e07316;
+                }
+                .addtocart{
+                    font-size: 12px;
+                    color: #ffffff;
+                    width: 100%;
+                    border: none;
+                    &::before{
+                        content: "Thêm vào giỏ hàng";
+                        margin-right: 33px;
+                    }
+                }
+            }
+        }
     }
+    .product-option-open{
+        visibility:visible;
+        animation: open .3s forwards;
+    }
+    .product-option-close{
+        visibility: hidden;
+        opacity: 0;
+        transition: all .3s;
+        animation: close .3s forwards;
+    }
+}
+.overlay-open{
+    visibility:visible;
 }

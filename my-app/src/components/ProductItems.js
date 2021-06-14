@@ -3,20 +3,42 @@ import Currency from '../common/Currency';
 import Image from '../common/Image';
 import ButtonAdd from '../common/ButtonAdd';
 
+import ProductOption from '../components/ProductOption';
 
 class Product extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            optionClose: false
+        };
+    }
+
+
+    handleClickOpen = () => {
+        this.setState({
+            optionClose: true
+        })
+    }
+    handleClickClose = () => {
+        this.setState({
+            optionClose: false
+        })
+    }
     renderProduct = (item) => {
         return (
-            <li className="category-product__items" key={item._id}>
-                <Image className="category-product__items-img" src={item.image} alt={`ảnh ${item.product_name}`} />
-                <div className="category-product__items-info">
-                    <h5 className="category-product__items-name">{item.product_name}</h5>
-                    <p className="category-product__items-desc">{item.description}</p>
-                    <Currency className="category-product__items-price" price={item.price} />
-                </div>
-                <ButtonAdd />
-            </li>
+            <div key={item._id}>
+                <li className="category-product__items" onClick={this.handleClickOpen}>
+                    <Image className="category-product__items-img" src={item.image} alt={`ảnh ${item.product_name}`} />
+                    <div className="category-product__items-info">
+                        <h5 className="category-product__items-name">{item.product_name}</h5>
+                        <p className="category-product__items-desc">{item.description}</p>
+                        <Currency className="category-product__items-price" price={item.price} />
+                    </div>
+                    <ButtonAdd />
+                </li>
+                <ProductOption products={item} optionClose={this.state.optionClose} onClick={this.handleClickClose} />
+            </div>
         )
 
     }
@@ -24,6 +46,7 @@ class Product extends React.Component {
 
     render() {
         const { categories, search } = this.props;
+
         const ListProduct = categories.ListProduct.filter(item => {
             return item.product_name.toLowerCase().includes(search.toLowerCase());
         })
@@ -42,7 +65,11 @@ class Product extends React.Component {
                         })
                     }
                 </ul>
+
+
             </div>
+
+
         )
 
 

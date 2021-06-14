@@ -40,6 +40,8 @@ class ProductContainer extends React.Component {
         window.removeEventListener("scroll", this.handleOnScroll)
     }
 
+
+
     render() {
         const { data } = this.props;
 
