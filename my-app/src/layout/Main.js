@@ -10,7 +10,6 @@ import NoneData from '../page/NoneData';
 
 
 class Main extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -19,6 +18,9 @@ class Main extends React.Component {
             active: null
         };
     }
+
+
+
 
     mergeData = (categories, products) => {
         categories.map((category) => {
@@ -87,6 +89,7 @@ class Main extends React.Component {
                         </div>
                         <CartContainer />
                     </div>
+
                 </main>
             );
         }

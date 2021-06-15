@@ -3,20 +3,61 @@ import '../assets/productoption.scss';
 import Image from '../common/Image';
 import Input from '../common/SearchInput';
 import Currency from '../common/Currency';
-// import cafe from '../assets/img/d.jpg';
+
 
 class ProductOption extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            productSize: this.props.infoProduct.variants[0].val,
+            productPrice: this.props.infoProduct.variants[0].price,
+            amount: 1,
+            topping: 0
+
+        }
+    }
+
+    handleProductSize = (size, price) => {
+        this.setState({
+            productSize: size,
+            productPrice: price
+        })
+    }
+
+    handlePlus = () => {
+        this.setState({
+            amount: this.state.amount + 1
+        })
+    }
+
+    handleMinus = () => {
+        if (this.state.amount > 0) {
+            this.setState({
+                amount: this.state.amount - 1
+            })
+        }
+    }
+
+    handleProductToping = (price) => {
+        this.setState({
+            topping: this.state.topping + price
+        })
+    }
+
     render() {
-        const { products, optionClose } = this.props;
-        console.log(products);
+        const { infoProduct, optionClose } = this.props;
+        const { productSize, productPrice, amount, topping } = this.state;
+
+        // console.log(infoProduct);
         return (
-            <div className={optionClose ? 'overlay-open  overlay' : 'overlay'} onClick={this.props.onClick}>
+            <div className={optionClose ? 'overlay-open  overlay' : 'overlay'}>
+                <div className={optionClose ? 'overlay-open  overlay' : 'overlay'} onClick={this.props.onClick}></div>
                 <div className={optionClose ? 'product-option-open  product-option' : 'product-option-close product-option'}>
                     <div className="product-option__top">
-                        <Image src={products.image} alt={`ảnh ${products.product_name}`} />
+                        <Image src={infoProduct.image} alt={`ảnh ${infoProduct.product_name}`} />
                         <div className="product-option__top-info">
-                            <p>{products.product_name}</p>
-                            <p>Nhỏ</p>
+                            <p>{infoProduct.product_name}</p>
+                            <p>{productSize}</p>
                         </div>
                         <i className="fa fa-times" onClick={this.props.onClick}></i>
                     </div>
@@ -24,30 +65,34 @@ class ProductOption extends React.Component {
                     <div className="product-option__body">
                         <div className="product-option__body-option">
                             <p>Loại</p>
-                            <p>Size-</p>
-                            <div className="checkbox-list">
-                                {/* {
-                                    products.variants.map(item =>
-                                    (
-                                        <div className="checkbox">
-                                            <Input type="radio" name="radio" />
-                                            <span>{item.val} (+3.000 ₫)</span>
-                                        </div>
-                                    ))
-                                } */}
-                                {/* <div className="checkbox">
-                                    <Input type="radio" name="radio" />
-                                    <span>Nhỏ</span>
+                            <div className="checkbox-container">
+                                <p>Size-</p>
+                                <div className="checkbox-items">
+                                    {
+                                        infoProduct.variants.map((item) => (
+                                            <div className="checkbox" key={item.code}>
+                                                <Input checked={item.val === infoProduct.variants[0].val ? 'checked' : null} type="radio" name="radio" onClick={() => { this.handleProductSize(item.val, item.price) }} />
+                                                <span>{item.val} (<Currency price={item.price - infoProduct.variants[0].price} />)</span>
+                                            </div>
+                                        ))
+                                    }
                                 </div>
-                                <div className="checkbox">
-                                    <Input type="radio" name="radio" />
-                                    <span>Vừa (+3.000 ₫)</span>
-                                </div>
-                                <div className="checkbox">
-                                    <Input type="radio" name="radio" />
-                                    <span>Lớn (+6.000 ₫)</span>
-                                </div> */}
                             </div>
+                            {infoProduct.topping_list.length !== 0
+                                ? <div className="checkbox-container">
+                                    <p>Topping-</p>
+                                    <div className="checkbox-items">
+                                        {
+                                            infoProduct.topping_list.map((item) => (
+                                                <div className="checkbox" key={item.code}>
+                                                    <Input type="checkbox" name="radio" onClick={() => { this.handleProductToping(item.price) }} />
+                                                    <span>{item.product_name} (<Currency price={item.price} />)</span>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                : null}
                         </div>
                         <form className="main-container__left-product__form product-option__body-note" action="#">
                             <i className="fa fa-pencil"></i>
@@ -57,17 +102,18 @@ class ProductOption extends React.Component {
 
                     <div className="product-option__bot">
                         <div className="product-option__bot-left">
-                            <i className="fa fa-minus-circle"></i>
-                            <span>1</span>
-                            <i className="fa fa-plus-circle"></i>
+                            <i className="fa fa-minus-circle" onClick={this.handleMinus}></i>
+                            <span>{amount}</span>
+                            <i className="fa fa-plus-circle" onClick={this.handlePlus}></i>
                         </div>
                         <div className="product-option__bot-right">
-                            <Currency className="btn addtocart" price="32000" />
+                            <Currency className="btn addtocart" price={amount * productPrice + topping} />
                         </div>
                     </div>
                 </div>
             </div>
         )
+
     }
 }
 
