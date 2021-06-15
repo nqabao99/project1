@@ -12,8 +12,8 @@ class ProductOption extends React.Component {
             productSize: this.props.infoProduct.variants[0].val,
             productPrice: this.props.infoProduct.variants[0].price,
             amount: 1,
-            topping: 0
-
+            topping: 0,
+            nameTopping: ''
         }
     }
 
@@ -36,19 +36,31 @@ class ProductOption extends React.Component {
                 amount: this.state.amount - 1
             })
         }
+
     }
 
-    handleProductToping = (price) => {
-        this.setState({
-            topping: this.state.topping + price
-        })
+    handleProductToping = (price, id, name) => {
+        let check = document.getElementById(id);
+
+        if (check.checked === true) {
+            this.setState({
+                topping: this.state.topping + price,
+                nameTopping: this.state.nameTopping.concat(` ${name} +`)
+            })
+        } else {
+            this.setState({
+                topping: this.state.topping - price,
+                nameTopping: ''
+            })
+        }
+
     }
 
     render() {
         const { infoProduct, optionClose } = this.props;
-        const { productSize, productPrice, amount, topping } = this.state;
+        const { productSize, productPrice, amount, topping, nameTopping } = this.state;
 
-        // console.log(infoProduct);
+        console.log(nameTopping);
         return (
             <div className={optionClose ? 'overlay-open  overlay' : 'overlay'}>
                 <div className={optionClose ? 'overlay-open  overlay' : 'overlay'} onClick={this.props.onClick}></div>
@@ -58,6 +70,7 @@ class ProductOption extends React.Component {
                         <div className="product-option__top-info">
                             <p>{infoProduct.product_name}</p>
                             <p>{productSize}</p>
+                            <p>{nameTopping.slice(0, -2)}</p>
                         </div>
                         <i className="fa fa-times" onClick={this.props.onClick}></i>
                     </div>
@@ -78,6 +91,7 @@ class ProductOption extends React.Component {
                                     }
                                 </div>
                             </div>
+
                             {infoProduct.topping_list.length !== 0
                                 ? <div className="checkbox-container">
                                     <p>Topping-</p>
@@ -85,7 +99,10 @@ class ProductOption extends React.Component {
                                         {
                                             infoProduct.topping_list.map((item) => (
                                                 <div className="checkbox" key={item.code}>
-                                                    <Input type="checkbox" name="radio" onClick={() => { this.handleProductToping(item.price) }} />
+                                                    <Input type="checkbox" name="checkbox" id={item.code}
+                                                        onChange={() => { this.handleProductToping(item.price, item.code, item.product_name) }}
+
+                                                    />
                                                     <span>{item.product_name} (<Currency price={item.price} />)</span>
                                                 </div>
                                             ))
@@ -107,7 +124,7 @@ class ProductOption extends React.Component {
                             <i className="fa fa-plus-circle" onClick={this.handlePlus}></i>
                         </div>
                         <div className="product-option__bot-right">
-                            <Currency className="btn addtocart" price={amount * productPrice + topping} />
+                            <Currency className="btn addtocart" price={amount * (productPrice + topping)} />
                         </div>
                     </div>
                 </div>

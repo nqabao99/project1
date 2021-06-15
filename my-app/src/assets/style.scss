@@ -143,10 +143,8 @@ body {
             &-product {
                 width: calc(100% - 291px - 40px);
                 margin: 0 20px;
-                margin-bottom: 450px;
                 &__form {
                     position: relative;
-                    // margin-bottom: -80px;
                     margin-bottom: -20px;
                     input {
                         width: 100%;
@@ -179,9 +177,7 @@ body {
                 }
                 .category {
                     padding-top: 20px;
-                    & ~ .noneProduct {
-                        display: none;
-                    }
+                    
                     &:last-child {
                         margin-bottom: 448px;
                     }

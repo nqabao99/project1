@@ -66,7 +66,6 @@ class Main extends React.Component {
     }
 
 
-
     render() {
         const { active, newData, loading } = this.state;
 

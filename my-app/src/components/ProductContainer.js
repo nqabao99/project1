@@ -18,8 +18,6 @@ class ProductContainer extends React.Component {
 
 
 
-
-
     handleSearch = e => {
         this.setState({ search: e.target.value })
     }
@@ -54,34 +52,52 @@ class ProductContainer extends React.Component {
 
     handleClickClose = () => {
         this.setState({
-            optionClose: false
+            optionClose: false,
+            infoProduct: null
         })
     }
 
 
     render() {
         const { data } = this.props;
-        const { infoProduct } = this.state;
-        // console.log(data);
+        const { infoProduct, search } = this.state;
+
+        let meger = [];
+        data.map(item => item.ListProduct.length > 0 ?
+            meger.push(item.ListProduct) : null);
+
+        let megerFilter = meger.map((item) =>
+            item.filter((i) =>
+                i.product_name.toLowerCase().includes(search.toLowerCase())
+            )
+        );
+
+        let check = megerFilter.some((item) => item.length > 0)
+
         return (
             <div className="main-container__left-product">
                 <form className="main-container__left-product__form" action="#">
                     <i className="fa fa-search"></i>
                     <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" onChange={this.handleSearch} />
                 </form>
+
                 {
-                    data.map(item => item.ListProduct.length !== 0 ?
-                        (
-                            <ProductItems key={item._id} categories={item} search={this.state.search} handleClickOpen={this.handleClickOpen} />
-                        ) : null)
+                    check ?
+                        data.map(item => item.ListProduct.length !== 0 ?
+                            (
+                                <ProductItems key={item._id} categories={item} search={this.state.search} handleClickOpen={this.handleClickOpen} />
+                            ) : null)
+                        :
+                        <div className="noneProduct">
+                            <div>
+                                <Image src={src_noneproduct} alt="none product" />
+                                <p>Rất tiếc chúng tôi không tìm thấy sản phẩm!</p>
+                            </div>
+                        </div>
                 }
 
-                <div className="noneProduct">
-                    <div>
-                        <Image src={src_noneproduct} alt="none product" />
-                        <p>Rất tiếc chúng tôi không tìm thấy sản phẩm!</p>
-                    </div>
-                </div>
+
+
                 {infoProduct !== null ? <ProductOption infoProduct={infoProduct} optionClose={this.state.optionClose} onClick={this.handleClickClose} /> : null}
 
             </div>

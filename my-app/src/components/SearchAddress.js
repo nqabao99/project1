@@ -50,7 +50,7 @@ class SearchAddress extends React.Component {
 
     render() {
         const { close, dataSearch, dataAddress } = this.state;
-
+        
         return (
             <form onSubmit={(e) => { e.preventDefault() }} className="seachAdd" >
                 <i className="fa fa-map-marker icon-marker"></i>
