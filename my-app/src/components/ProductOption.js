@@ -50,7 +50,7 @@ class ProductOption extends React.Component {
         } else {
             this.setState({
                 topping: this.state.topping - price,
-                nameTopping: ''
+                nameTopping: this.state.nameTopping.replace(` ${name} +`, '')
             })
         }
 

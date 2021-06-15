@@ -3,7 +3,8 @@ import React from 'react';
 import logo from '../assets/img/logo.png';
 import Button from '../common/Button';
 import Image from '../common/Image';
-import SearchAddress from '../components/SearchAddress'
+import SearchAddress from '../components/SearchAddress';
+import ShipNow from '../common/ShipNow';
 
 class Header extends React.Component {
     render() {
@@ -18,7 +19,9 @@ class Header extends React.Component {
                     <div className="header-center">
                         <div className="header-center__call">
                             <Button text="Giao ngay" />
+                            <ShipNow />
                         </div>
+
                         <div className="header-center__form">
                             <SearchAddress />
                         </div>
