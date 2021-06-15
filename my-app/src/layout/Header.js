@@ -7,7 +7,27 @@ import SearchAddress from '../components/SearchAddress';
 import ShipNow from '../common/ShipNow';
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false
+        }
+    }
+
+    handleOpen = () => {
+        this.setState({
+            open: true
+        })
+    }
+    handleClose = () => {
+        this.setState({
+            open: false
+        })
+    }
+
+
     render() {
+        const { open } = this.state;
         return (
             <header className="header">
                 <div className="header-container">
@@ -18,8 +38,8 @@ class Header extends React.Component {
                     </div>
                     <div className="header-center">
                         <div className="header-center__call">
-                            <Button text="Giao ngay" />
-                            <ShipNow />
+                            <Button onClick={this.handleOpen} text="Giao ngay" />
+                            <ShipNow onClick={this.handleClose} open={open} />
                         </div>
 
                         <div className="header-center__form">
