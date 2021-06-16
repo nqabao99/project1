@@ -10,24 +10,43 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            textButton: 'Giao ngay',
             open: false
         }
     }
 
     handleOpen = () => {
         this.setState({
-            open: true
+            open: !this.state.open
         })
     }
     handleClose = () => {
+        let date = document.getElementById("date").value
+        let time = document.getElementById("time").value
+
+        let textButton
+        if (time !== 'Trong 15-30 phút') {
+            textButton = date.concat(`-${time}`)
+        } else {
+            textButton = 'Giao ngay'
+        }
+
         this.setState({
+            textButton: textButton,
+            open: false
+        })
+    }
+
+    handleShipNow = () => {
+        this.setState({
+            textButton: 'Giao ngay',
             open: false
         })
     }
 
 
     render() {
-        const { open } = this.state;
+        const { open, textButton } = this.state;
         return (
             <header className="header">
                 <div className="header-container">
@@ -38,8 +57,8 @@ class Header extends React.Component {
                     </div>
                     <div className="header-center">
                         <div className="header-center__call">
-                            <Button onClick={this.handleOpen} text="Giao ngay" />
-                            <ShipNow onClick={this.handleClose} open={open} />
+                            <Button onClick={this.handleOpen} text={textButton} />
+                            <ShipNow onClickClose={this.handleClose} open={open} handleShipNow={this.handleShipNow} />
                         </div>
 
                         <div className="header-center__form">

@@ -52,9 +52,13 @@ class ProductContainer extends React.Component {
 
     handleClickClose = () => {
         this.setState({
-            optionClose: false,
-            infoProduct: null
+            optionClose: false
         })
+        setTimeout(() => {
+            this.setState({
+                infoProduct: null
+            })
+        }, 300)
     }
 
 
