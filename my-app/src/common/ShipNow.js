@@ -31,7 +31,14 @@ class ShipNow extends React.Component {
         //giờ ngày khác
         let arr = [];
         for (let i = 7; i <= 20; i++) {
-            arr.push(i + ":30")
+            for (let j = 0; j <= 30; j += 30) {
+                if (j === 0) {
+                    arr.push(i + ":00")
+                } else {
+                    arr.push(i + ":" + j)
+                }
+
+            }
         }
         //giờ hôm nay
         let arr2 = ['Trong 15-30 phút'];
