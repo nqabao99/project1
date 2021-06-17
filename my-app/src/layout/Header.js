@@ -9,6 +9,7 @@ import ShipNow from '../common/ShipNow';
 class Header extends React.Component {
     constructor(props) {
         super(props);
+        this.closeShipNow = React.createRef();
         this.state = {
             textButton: 'Giao ngay',
             open: false,
@@ -51,6 +52,22 @@ class Header extends React.Component {
         })
     }
 
+    componentDidMount() {
+        document.addEventListener("mousedown", this.handleClickOutside);
+    }
+    componentWillUnmount() {
+      document.removeEventListener("mousedown", this.handleClickOutside);
+    }
+
+    handleClickOutside = (event) => {
+        if (!this.closeShipNow.current.contains(event.target)) {
+          this.setState({
+            open: false,
+          });
+        }
+      }
+    
+
     render() {
         const { open, textButton, timeOrder } = this.state;
         return (
@@ -62,7 +79,7 @@ class Header extends React.Component {
                         </a>
                     </div>
                     <div className="header-center">
-                        <div className="header-center__call">
+                        <div className="header-center__call"  ref={this.closeShipNow}>
                             <Button onClick={this.handleOnOffShipNow} text={textButton} />
                             <ShipNow
                                 open={open}

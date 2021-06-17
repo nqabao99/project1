@@ -8,10 +8,12 @@ import Footer from '../layout/Footer';
 
 
 class HomePage extends React.Component {
+    
+
     render() {
         return (
-            <div className="home-page">
-                <Header />
+            <div className="home-page" >
+                <Header/>
                 <Main />
                 <Footer />
             </div>
