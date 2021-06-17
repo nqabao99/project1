@@ -25,7 +25,7 @@ class Header extends React.Component {
         let date = document.getElementById("date").value
         let time = document.getElementById("time").value
 
-        if (time !== 'default') {
+        if (time !== 'Trong 15-30 phút') {
             this.setState({
                 textButton: date.concat(`-${time}`)
             })
@@ -50,22 +50,6 @@ class Header extends React.Component {
             timeOrder: true
         })
     }
-
-    // handleDateToTime = (e) => {
-    //     if (e.target.value !== "15/06/2021") {
-    //         this.setState({
-    //             dateDefault: e.target.value,
-    //             timeDefault: this.state.timeDefault
-    //         })
-    //     } else {
-    //         this.setState({
-    //             dateDefault: "Hôm nay",
-    //             timeDefault: this.state.timeDefault
-    //         })
-    //     }
-    // }
-
-
 
     render() {
         const { open, textButton, timeOrder } = this.state;

@@ -11,7 +11,9 @@ class ShipNow extends React.Component {
             date1: '',
             date2: '',
             date3: '',
-            bao: false
+            checkDay: false,
+            hoursTomorrow: [],
+            hoursNow: []
         }
     }
 
@@ -26,28 +28,53 @@ class ShipNow extends React.Component {
         nextDay.setDate(day.getDate() + 1);
         let nextTwoDay = new Date(day);
         nextTwoDay.setDate(day.getDate() + 2);
+        //giờ ngày khác
+        let arr = [];
+        for (let i = 7; i <= 20; i++) {
+            arr.push(i + ":30")
+        }
+        //giờ hôm nay
+        let arr2 = ['Trong 15-30 phút'];
+        let sum = day.getHours();
+        if (sum <= 20 && sum >= 7) {
+            for (let i = 1; i <= 20 - sum; i++) {
+                for (let j = 0; j <= 45; j += 15) {
+                    if (j === 0) {
+                        arr2.push(sum + i + ":00")
+                    } else {
+                        arr2.push(sum + i + ":" + j)
+                    }
+                }
+            }
+            arr2.pop();
+        }
+
+
         this.setState({
             date1: this.formatDate(day),
             date2: this.formatDate(nextDay),
-            date3: this.formatDate(nextTwoDay)
+            date3: this.formatDate(nextTwoDay),
+            hoursTomorrow: arr,
+            hoursNow: arr2
         })
+
     }
     hanldeChange = (e) => {
         if (e.target.value !== this.state.date1) {
             this.setState({
-                bao: true
+                checkDay: true
             })
         } else {
             this.setState({
-                bao: false
+                checkDay: false
             })
         }
 
     }
     render() {
         const { open, timeOrder } = this.props;
-        const { date, date1, date2, date3, bao } = this.state;
-        console.log(bao);
+        const { hoursNow, hoursTomorrow, date1, date2, date3, checkDay } = this.state;
+        // console.log(hours2);
         return (
             <div className={open ? 'open ship-now' : 'ship-now'}>
                 <div className="ship-now__top">
@@ -72,13 +99,16 @@ class ShipNow extends React.Component {
                     <div className="ship-now__bot-day">
                         <label>Thời gian đặt</label>
                         <select id="time">
-                            {bao ? '' :
-                                <option selected value="default">Trong 15-30 phút</option>
+                            {checkDay
+                                ?
+                                hoursTomorrow.map((item, index) =>
+                                    <option key={index} value={item}>{item}</option>
+                                )
+                                :
+                                hoursNow.map((item, index) =>
+                                    <option key={index} value={item}>{item}</option>
+                                )
                             }
-                            <option value="20:15">20:15</option>
-                            <option value="20:30">20:30</option>
-                            <option value="20:45">20:45</option>
-                            <option value="21:00">21:00</option>
                         </select>
                     </div>
                     <Button onClick={this.props.handleTimer} className="btn-shipnow" text="Hẹn giờ" />
