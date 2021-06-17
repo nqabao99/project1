@@ -11,42 +11,64 @@ class Header extends React.Component {
         super(props);
         this.state = {
             textButton: 'Giao ngay',
-            open: false
+            open: false,
+            timeOrder: false
         }
     }
 
-    handleOpen = () => {
+    handleOnOffShipNow = () => {
         this.setState({
             open: !this.state.open
         })
     }
-    handleClose = () => {
+    handleTimer = () => {
         let date = document.getElementById("date").value
         let time = document.getElementById("time").value
 
-        let textButton
-        if (time !== 'Trong 15-30 phút') {
-            textButton = date.concat(`-${time}`)
+        if (time !== 'default') {
+            this.setState({
+                textButton: date.concat(`-${time}`)
+            })
         } else {
-            textButton = 'Giao ngay'
+            this.setState({
+                textButton: 'Giao ngay',
+                timeOrder: false
+            })
         }
-
-        this.setState({
-            textButton: textButton,
-            open: false
-        })
     }
 
     handleShipNow = () => {
         this.setState({
             textButton: 'Giao ngay',
-            open: false
+            open: false,
+            timeOrder: false,
         })
     }
 
+    handleTimeOrder = () => {
+        this.setState({
+            timeOrder: true
+        })
+    }
+
+    // handleDateToTime = (e) => {
+    //     if (e.target.value !== "15/06/2021") {
+    //         this.setState({
+    //             dateDefault: e.target.value,
+    //             timeDefault: this.state.timeDefault
+    //         })
+    //     } else {
+    //         this.setState({
+    //             dateDefault: "Hôm nay",
+    //             timeDefault: this.state.timeDefault
+    //         })
+    //     }
+    // }
+
+
 
     render() {
-        const { open, textButton } = this.state;
+        const { open, textButton, timeOrder } = this.state;
         return (
             <header className="header">
                 <div className="header-container">
@@ -57,8 +79,14 @@ class Header extends React.Component {
                     </div>
                     <div className="header-center">
                         <div className="header-center__call">
-                            <Button onClick={this.handleOpen} text={textButton} />
-                            <ShipNow onClickClose={this.handleClose} open={open} handleShipNow={this.handleShipNow} />
+                            <Button onClick={this.handleOnOffShipNow} text={textButton} />
+                            <ShipNow
+                                open={open}
+                                handleTimer={this.handleTimer}
+                                handleShipNow={this.handleShipNow}
+                                handleTimeOrder={this.handleTimeOrder}
+                                timeOrder={timeOrder}
+                            />
                         </div>
 
                         <div className="header-center__form">

@@ -3,37 +3,51 @@ import '../assets/shipnow.scss';
 import Button from '../common/Button';
 
 class ShipNow extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
-            openShipBot: false,
-            dateDefault: 'Hôm nay',
-            timeDefault: 'Trong 15-30 phút'
+            date: new Date(),
+            date1: '',
+            date2: '',
+            date3: '',
+            bao: false
         }
     }
 
-    handleOpenShipBot = () => {
-        this.setState({
-            openShipBot: true
-        })
+    formatDate = (d) => {
+        let today = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+        return today;
     }
 
-    handleDateTime = (e) => {
-
-        if (e.target.value !== "15/06/2021") {
+    componentDidMount() {
+        let day = new Date();
+        let nextDay = new Date(day);
+        nextDay.setDate(day.getDate() + 1);
+        let nextTwoDay = new Date(day);
+        nextTwoDay.setDate(day.getDate() + 2);
+        this.setState({
+            date1: this.formatDate(day),
+            date2: this.formatDate(nextDay),
+            date3: this.formatDate(nextTwoDay)
+        })
+    }
+    hanldeChange = (e) => {
+        if (e.target.value !== this.state.date1) {
             this.setState({
-                timeDefault: "20:00"
+                bao: true
             })
         } else {
             this.setState({
-                timeDefault: 'Trong 15-30 phút'
+                bao: false
             })
         }
-    }
 
+    }
     render() {
-        const { open } = this.props;
-        const { openShipBot, timeDefault, dateDefault } = this.state;
+        const { open, timeOrder } = this.props;
+        const { date, date1, date2, date3, bao } = this.state;
+        console.log(bao);
         return (
             <div className={open ? 'open ship-now' : 'ship-now'}>
                 <div className="ship-now__top">
@@ -41,31 +55,33 @@ class ShipNow extends React.Component {
                         <i className="fa fa-search"></i>
                         <span>Giao ngay</span>
                     </div>
-                    <div className="ship-now__top-text" onClick={this.handleOpenShipBot}>
+                    <div className="ship-now__top-text" onClick={this.props.handleTimeOrder}>
                         <i className="fa fa-search"></i>
                         <span>Thời gian đặt hàng</span>
                     </div>
                 </div>
-                <div className={openShipBot ? 'open ship-now__bot' : 'ship-now__bot'}>
+                <div className={timeOrder ? 'open ship-now__bot' : 'ship-now__bot'}>
                     <div className="ship-now__bot-day">
                         <label>Ngày đặt</label>
-                        <select id="date" onChange={this.handleDateTime}>
-                            <option value="15/06/2021">{dateDefault}</option>
-                            <option value="16/06/2021">16/06/2021</option>
-                            <option value="17/06/2021">17/06/2021</option>
+                        <select id="date" onChange={this.hanldeChange}>
+                            <option value={date1}>Hôm nay</option>
+                            <option value={date2}>{date2}</option>
+                            <option value={date3}>{date3}</option>
                         </select>
                     </div>
                     <div className="ship-now__bot-day">
                         <label>Thời gian đặt</label>
                         <select id="time">
-                            <option value={timeDefault}>{timeDefault}</option>
+                            {bao ? '' :
+                                <option selected value="default">Trong 15-30 phút</option>
+                            }
                             <option value="20:15">20:15</option>
                             <option value="20:30">20:30</option>
                             <option value="20:45">20:45</option>
                             <option value="21:00">21:00</option>
                         </select>
                     </div>
-                    <Button onClick={this.props.onClickClose} className="btn-shipnow" text="Hẹn giờ" />
+                    <Button onClick={this.props.handleTimer} className="btn-shipnow" text="Hẹn giờ" />
                 </div>
             </div>
         )

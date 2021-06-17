@@ -88,7 +88,6 @@ class Main extends React.Component {
                         </div>
                         <CartContainer />
                     </div>
-
                 </main>
             );
         }
