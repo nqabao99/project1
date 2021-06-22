@@ -8,12 +8,12 @@ import ItemProductOrder from "../common/ItemProductOrder";
 class Cart extends React.Component {
     render() {
         const { listProductOrder, listOrderClickOpenOptionBox } = this.props;
-        // let newListProductOrder = [];
-        // if (listProductOrder !== undefined) {
-        //     newListProductOrder = listProductOrder.filter((item) => {
-        //         return item.amount > 0;
-        //     });
-        // }
+        let totalPrice = 0;
+        let totalAmount = 0;
+        if (listProductOrder !== undefined) {
+            listProductOrder.map(item => totalAmount += item.amount);
+            listProductOrder.map(item => totalPrice += item.totalPrice)
+        }
 
         return (
             <div className="main-container__right">
@@ -38,7 +38,10 @@ class Cart extends React.Component {
                         )}
 
                     <div className="main-cart__mid">
-                        <p className="color-33">Cộng món</p>
+                        <div className="total">
+                            <p className="color-33">Cộng món({`${totalAmount} món`})</p>
+                            <Currency className="color-33" price={totalPrice} />
+                        </div>
                         <div className="total">
                             <p className="color-33">Vận chuyển</p>
                             <Currency className="color-33" price="10000" />
