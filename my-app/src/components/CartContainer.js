@@ -57,7 +57,7 @@ class Cart extends React.Component {
                     <div className="main-cart__bot">
                         <div className="total">
                             <p>Tổng cộng</p>
-                            <Currency price="10000" />
+                            <Currency className="totalPrice" price={totalPrice + 10000} />
                         </div>
                     </div>
                 </div>

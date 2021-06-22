@@ -84,31 +84,33 @@ class Main extends React.Component {
             let { listProductOrder } = this.state;
             this.setState({
                 optionBoxClose: false,
-                // listProductOrder: [...listProductOrder, data],
+                listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
             });
 
-            if (listProductOrder.length === 0) {
-                this.setState({
-                    listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
-                });
-            } else {
-                let flag = 1;
-                listProductOrder.map((item) =>
-                    item.product_name === data.product_name &&
-                        item.productSize === data.productSize &&
-                        item.nameTopping === data.nameTopping &&
-                        item.note === data.note
-                        ? ((item.amount += data.amount),
-                            (item.totalPrice += data.totalPrice),
-                            (flag *= -1))
-                        : (flag *= 1)
-                );
-                if (flag === 1) {
-                    this.setState({
-                        listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
-                    });
-                }
-            }
+            // if (listProductOrder.length === 0) {
+            //     this.setState({
+            //         listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
+            //     });
+            // } else {
+            //     let flag = 1;
+            //     listProductOrder.map((item) =>
+            //         item.product_name === data.product_name &&
+            //             item.productSize === data.productSize &&
+            //             item.nameTopping === data.nameTopping &&
+            //             item.note === data.note
+            //             ? ((item.amount += data.amount),
+            //                 (item.totalPrice += data.totalPrice),
+            //                 (flag *= -1))
+            //             : (flag *= 1)
+            //     );
+            //     if (flag === 1) {
+            //         this.setState({
+            //             listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
+            //         });
+            //     }
+            // }
+
+
         } else {
             let editItemProductOrder = this.state.listProductOrder.fill(
                 data,
@@ -163,7 +165,7 @@ class Main extends React.Component {
             optionBoxClose,
         } = this.state;
 
-        //console.log(listProductOrder);
+        console.log(listProductOrder);
 
         if (loading) {
             return <PlacehoderLoading />;
