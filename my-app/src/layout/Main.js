@@ -5,13 +5,18 @@ import CategoryContainer from "../components/CategoryContainer";
 import ProductContainer from "../components/ProductContainer";
 import NoneData from "../page/NoneData";
 
+import ProductOption from "../components/ProductOption";
 class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             newData: [],
             loading: true,
-            active: null,
+            active: null, //new
+            infoOptionProduct: [],
+            optionBoxClose: false,
+            listProductOrder: [],
+            indexProductOrder: -1,
         };
     }
 
@@ -54,7 +59,7 @@ class Main extends React.Component {
             });
     }
 
-    getatId = (id) => {
+    getIdActive = (id) => {
         let check = document.querySelectorAll(".active");
 
         if (check.length > 0) {
@@ -63,8 +68,98 @@ class Main extends React.Component {
         document.getElementById(`at${id}`).classList.add("active");
     };
 
+    handleClickCloseOptionBox = () => {
+        this.setState({
+            optionBoxClose: false,
+        });
+        setTimeout(() => {
+            this.setState({
+                infoOptionProduct: [],
+            });
+        }, 300);
+    };
+
+    getDataOpitonProduct = (data) => {
+        if (this.state.indexProductOrder === -1) {
+            let { listProductOrder } = this.state;
+            this.setState({
+                optionBoxClose: false,
+            });
+
+            if (listProductOrder.length === 0) {
+                this.setState({
+                    listProductOrder: [...listProductOrder, data],
+                });
+            } else {
+                let flag = 1;
+                listProductOrder.map((item) =>
+                    item.product_name === data.product_name &&
+                    item.productSize === data.productSize &&
+                    item.nameTopping === data.nameTopping &&
+                    item.note === data.note
+                        ? ((item.amount += data.amount),
+                          (item.totalPrice += data.totalPrice),
+                          (flag *= -1))
+                        : (flag *= 1)
+                );
+                if (flag === 1) {
+                    this.setState({
+                        listProductOrder: [...listProductOrder, data],
+                    });
+                }
+            }
+        } else {
+            this.setState({
+                optionBoxClose: false,
+                listProductOrder: this.state.listProductOrder.fill(
+                    data,
+                    this.state.indexProductOrder,
+                    this.state.indexProductOrder + 1
+                ),
+            });
+        }
+
+        setTimeout(() => {
+            this.setState({
+                infoOptionProduct: [],
+                indexProductOrder: -1,
+            });
+        }, 300);
+    };
+
+    handleClickOpenOptionBox = (data) => {
+        let products = {
+            product_name: data.product_name,
+            image: data.image,
+            topping_list: data.topping_list,
+            variants: data.variants,
+        };
+
+        this.setState({
+            optionBoxClose: true,
+            infoOptionProduct: products,
+        });
+    };
+
+    listOrderClickOpenOptionBox = (data, index) => {
+        this.setState({
+            optionBoxClose: true,
+            infoOptionProduct: data,
+            indexProductOrder: index,
+        });
+    };
+
     render() {
-        const { active, newData, loading } = this.state;
+        const {
+            active,
+            newData,
+            loading,
+            infoOptionProduct,
+            listProductOrder,
+            optionBoxClose,
+        } = this.state;
+
+        console.log(optionBoxClose);
 
         if (loading) {
             return <PlacehoderLoading />;
@@ -77,12 +172,28 @@ class Main extends React.Component {
                         <div className="main-container__left">
                             <CategoryContainer active={active} data={newData} />
                             <ProductContainer
-                                getatId={this.getatId}
+                                getIdActive={this.getIdActive}
                                 data={newData}
+                                handleClickOpenOptionBox={
+                                    this.handleClickOpenOptionBox
+                                }
                             />
                         </div>
-                        <CartContainer />
+                        <CartContainer
+                            listProductOrder={listProductOrder}
+                            listOrderClickOpenOptionBox={
+                                this.listOrderClickOpenOptionBox
+                            }
+                        />
                     </div>
+                    {infoOptionProduct.length !== 0 ? (
+                        <ProductOption
+                            infoOptionProduct={infoOptionProduct}
+                            optionBoxClose={optionBoxClose}
+                            onClick={this.handleClickCloseOptionBox}
+                            getDataOpitonProduct={this.getDataOpitonProduct}
+                        />
+                    ) : null}
                 </main>
             );
         }

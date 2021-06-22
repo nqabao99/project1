@@ -4,24 +4,37 @@ import ProductItems from "./ProductItems";
 import Image from "../common/Image";
 import src_noneproduct from "../assets/img/noneproduct.png";
 
-import ProductOption from "../components/ProductOption";
-
 class ProductContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             search: "",
-            optionClose: false,
-            infoProduct: null,
+            copyData: [...this.props.data],
         };
     }
 
-    handleSearch = (e) => {
-        this.setState({ search: e.target.value });
+    handleSearchProduct = (e) => {
+        let filterProduct = [];
+        this.props.data.map((item) =>
+            item.ListProduct.filter(
+                (i) =>
+                    i.product_name
+                        .toLowerCase()
+                        .includes(e.target.value.toLowerCase()) &&
+                    filterProduct.push(i)
+            )
+        );
+
+        //xoá phần từ trùng lặp
+        let newFilterProduct = filterProduct.filter((elem, index, self) => {
+            return index === self.indexOf(elem);
+        });
+
+        this.setState({ search: e.target.value, copyData: newFilterProduct });
     };
 
-    handleOnScroll = (data) => {
-        let arr = document.querySelectorAll(".category");
+    handleOnScrollMenu = () => {
+        let arr = document.querySelectorAll(".categoryActive");
         let check = window.scrollY - 35;
 
         arr.forEach((item) =>
@@ -29,54 +42,25 @@ class ProductContainer extends React.Component {
             check <
                 document.getElementById(item.id).offsetTop +
                     document.getElementById(item.id).offsetHeight
-                ? this.getId(item.id)
+                ? this.getIdActive(item.id)
                 : null
         );
     };
 
-    getId = (id) => {
-        this.props.getatId(id);
+    getIdActive = (id) => {
+        this.props.getIdActive(id);
     };
 
     componentDidMount() {
-        window.addEventListener("scroll", this.handleOnScroll);
+        window.addEventListener("scroll", this.handleOnScrollMenu);
     }
     componentWillUnmount() {
-        window.removeEventListener("scroll", this.handleOnScroll);
+        window.removeEventListener("scroll", this.handleOnScrollMenu);
     }
 
-    handleClickOpen = (product) => {
-        this.setState({
-            optionClose: true,
-            infoProduct: product,
-        });
-    };
-
-    handleClickClose = () => {
-        this.setState({
-            optionClose: false,
-        });
-        setTimeout(() => {
-            this.setState({
-                infoProduct: null,
-            });
-        }, 300);
-    };
-
     render() {
-        const { data } = this.props;
-        const { infoProduct, search } = this.state;
-
-        let meger = [];
-        data.map((item) => meger.push(item.ListProduct));
-
-        let megerFilter = meger.map((item) =>
-            item.filter((i) =>
-                i.product_name.toLowerCase().includes(search.toLowerCase())
-            )
-        );
-
-        let check = megerFilter.some((item) => item.length > 0);
+        const { data, handleClickOpenOptionBox } = this.props;
+        const { search, copyData } = this.state;
 
         return (
             <div className="main-container__left-product">
@@ -85,19 +69,45 @@ class ProductContainer extends React.Component {
                     <SearchInput
                         type="text"
                         placeholder="Tìm kiếm sản phẩm"
-                        onChange={this.handleSearch}
+                        onChange={this.handleSearchProduct}
                     />
                 </form>
 
-                {check ? (
+                {search.length === 0 ? (
                     data.map((item) => (
-                        <ProductItems
+                        <div
+                            className="category categoryActive"
                             key={item._id}
-                            categories={item}
-                            search={this.state.search}
-                            handleClickOpen={this.handleClickOpen}
-                        />
+                            id={item._id}
+                        >
+                            <p className="category-name">{item.name}</p>
+                            <ul className="category-product__list">
+                                {item.ListProduct.map((items) => (
+                                    <ProductItems
+                                        key={items._id}
+                                        product={items}
+                                        handleClickOpenOptionBox={
+                                            handleClickOpenOptionBox
+                                        }
+                                    />
+                                ))}
+                            </ul>
+                        </div>
                     ))
+                ) : copyData.length !== 0 ? (
+                    <div className="category">
+                        <ul className="category-product__list">
+                            {copyData.map((items, index) => (
+                                <ProductItems
+                                    key={index}
+                                    product={items}
+                                    handleClickOpenOptionBox={
+                                        handleClickOpenOptionBox
+                                    }
+                                />
+                            ))}
+                        </ul>
+                    </div>
                 ) : (
                     <div className="noneProduct">
                         <div>
@@ -106,14 +116,6 @@ class ProductContainer extends React.Component {
                         </div>
                     </div>
                 )}
-
-                {infoProduct !== null ? (
-                    <ProductOption
-                        infoProduct={infoProduct}
-                        optionClose={this.state.optionClose}
-                        onClick={this.handleClickClose}
-                    />
-                ) : null}
             </div>
         );
     }
