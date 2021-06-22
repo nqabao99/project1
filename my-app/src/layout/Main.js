@@ -84,7 +84,7 @@ class Main extends React.Component {
             let { listProductOrder } = this.state;
             this.setState({
                 optionBoxClose: false,
-                listProductOrder: [...listProductOrder, data],
+                // listProductOrder: [...listProductOrder, data],
             });
 
             if (listProductOrder.length === 0) {
