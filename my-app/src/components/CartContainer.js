@@ -8,6 +8,12 @@ import ItemProductOrder from "../common/ItemProductOrder";
 class Cart extends React.Component {
     render() {
         const { listProductOrder, listOrderClickOpenOptionBox } = this.props;
+        // let newListProductOrder = [];
+        // if (listProductOrder !== undefined) {
+        //     newListProductOrder = listProductOrder.filter((item) => {
+        //         return item.amount > 0;
+        //     });
+        // }
 
         return (
             <div className="main-container__right">
@@ -18,19 +24,16 @@ class Cart extends React.Component {
                     {listProductOrder !== undefined &&
                         listProductOrder.length !== 0 && (
                             <div className="main-cart__listOrder">
-                                {listProductOrder.map(
-                                    (item, index) =>
-                                        item.amount !== 0 && (
-                                            <ItemProductOrder
-                                                key={index}
-                                                index={index}
-                                                infoProduct={item}
-                                                listOrderClickOpenOptionBox={
-                                                    listOrderClickOpenOptionBox
-                                                }
-                                            />
-                                        )
-                                )}
+                                {listProductOrder.map((item, index) => (
+                                    <ItemProductOrder
+                                        key={index}
+                                        index={index}
+                                        infoProduct={item}
+                                        listOrderClickOpenOptionBox={
+                                            listOrderClickOpenOptionBox
+                                        }
+                                    />
+                                ))}
                             </div>
                         )}
 

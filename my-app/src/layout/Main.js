@@ -84,6 +84,7 @@ class Main extends React.Component {
             let { listProductOrder } = this.state;
             this.setState({
                 optionBoxClose: false,
+                listProductOrder: [...listProductOrder, data],
             });
 
             if (listProductOrder.length === 0) {
@@ -138,6 +139,7 @@ class Main extends React.Component {
         this.setState({
             optionBoxClose: true,
             infoOptionProduct: products,
+            indexProductOrder: -1,
         });
     };
 
@@ -159,7 +161,7 @@ class Main extends React.Component {
             optionBoxClose,
         } = this.state;
 
-        console.log(optionBoxClose);
+        //console.log(listProductOrder);
 
         if (loading) {
             return <PlacehoderLoading />;

@@ -185,7 +185,7 @@ class ProductOption extends React.Component {
                                                         type="checkbox"
                                                         name="checkbox"
                                                         id={item.code}
-                                                        onChange={() => {
+                                                        onClick={() => {
                                                             this.handleProductToping(
                                                                 item
                                                             );

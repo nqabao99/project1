@@ -5,6 +5,7 @@ import Currency from "../common/Currency";
 class ItemProductOrder extends React.Component {
     render() {
         const { infoProduct, index } = this.props;
+
         return (
             <div
                 className="itemOrder"
