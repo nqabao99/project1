@@ -7,12 +7,12 @@ import ItemProductOrder from "../common/ItemProductOrder";
 
 class Cart extends React.Component {
     render() {
-        const { listProductOrder, listOrderClickOpenOptionBox } = this.props;
+        const { listProductOrder, editOptionProduct } = this.props;
         let totalPrice = 0;
         let totalAmount = 0;
         if (listProductOrder !== undefined) {
-            listProductOrder.map(item => totalAmount += item.amount);
-            listProductOrder.map(item => totalPrice += item.totalPrice)
+            listProductOrder.map((item) => (totalAmount += item.amount));
+            listProductOrder.map((item) => (totalPrice += item.totalPrice));
         }
 
         return (
@@ -29,9 +29,7 @@ class Cart extends React.Component {
                                         key={index}
                                         index={index}
                                         infoProduct={item}
-                                        listOrderClickOpenOptionBox={
-                                            listOrderClickOpenOptionBox
-                                        }
+                                        editOptionProduct={editOptionProduct}
                                     />
                                 ))}
                             </div>
@@ -39,7 +37,9 @@ class Cart extends React.Component {
 
                     <div className="main-cart__mid">
                         <div className="total">
-                            <p className="color-33">Cộng món({`${totalAmount} món`})</p>
+                            <p className="color-33">
+                                Cộng món({`${totalAmount} món`})
+                            </p>
                             <Currency className="color-33" price={totalPrice} />
                         </div>
                         <div className="total">
@@ -57,7 +57,10 @@ class Cart extends React.Component {
                     <div className="main-cart__bot">
                         <div className="total">
                             <p>Tổng cộng</p>
-                            <Currency className="totalPrice" price={totalPrice + 10000} />
+                            <Currency
+                                className="totalPrice"
+                                price={totalPrice + 10000}
+                            />
                         </div>
                     </div>
                 </div>

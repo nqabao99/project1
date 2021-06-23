@@ -80,49 +80,49 @@ class Main extends React.Component {
     };
 
     getDataOpitonProduct = (data) => {
-        if (this.state.indexProductOrder === -1) {
-            let { listProductOrder } = this.state;
+        let { listProductOrder } = this.state;
+        this.setState({
+            optionBoxClose: false,
+        });
+
+        if (listProductOrder.length === 0) {
             this.setState({
-                optionBoxClose: false,
-                listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
+                listProductOrder: [...listProductOrder, data].filter(
+                    (item) => item.amount > 0
+                ),
             });
-
-            // if (listProductOrder.length === 0) {
-            //     this.setState({
-            //         listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
-            //     });
-            // } else {
-            //     let flag = 1;
-            //     listProductOrder.map((item) =>
-            //         item.product_name === data.product_name &&
-            //             item.productSize === data.productSize &&
-            //             item.nameTopping === data.nameTopping &&
-            //             item.note === data.note
-            //             ? ((item.amount += data.amount),
-            //                 (item.totalPrice += data.totalPrice),
-            //                 (flag *= -1))
-            //             : (flag *= 1)
-            //     );
-            //     if (flag === 1) {
-            //         this.setState({
-            //             listProductOrder: [...listProductOrder, data].filter(item => item.amount > 0),
-            //         });
-            //     }
-            // }
-
-
         } else {
-            let editItemProductOrder = this.state.listProductOrder.fill(
-                data,
-                this.state.indexProductOrder,
-                this.state.indexProductOrder + 1
-            )
-            this.setState({
-                optionBoxClose: false,
-                listProductOrder: editItemProductOrder.filter(item => item.amount > 0),
-            });
+            let flag = 1;
+            listProductOrder.map((item) =>
+                item.product_name === data.product_name &&
+                item.productSize === data.productSize &&
+                item.nameTopping === data.nameTopping &&
+                item.note === data.note
+                    ? ((item.amount += data.amount),
+                      (item.totalPrice += data.totalPrice),
+                      (flag *= -1))
+                    : (flag *= 1)
+            );
+            if (this.state.indexProductOrder !== -1) {
+                let editItemProductOrder = this.state.listProductOrder.fill(
+                    "",
+                    this.state.indexProductOrder,
+                    this.state.indexProductOrder + 1
+                );
+                this.setState({
+                    listProductOrder: editItemProductOrder.filter(
+                        (item) => item.amount > 0
+                    ),
+                });
+            }
+            if (flag === 1) {
+                this.setState({
+                    listProductOrder: [...listProductOrder, data].filter(
+                        (item) => item.amount > 0
+                    ),
+                });
+            }
         }
-
 
         setTimeout(() => {
             this.setState({
@@ -147,7 +147,7 @@ class Main extends React.Component {
         });
     };
 
-    listOrderClickOpenOptionBox = (data, index) => {
+    editOptionProduct = (data, index) => {
         this.setState({
             optionBoxClose: true,
             infoOptionProduct: data,
@@ -165,7 +165,7 @@ class Main extends React.Component {
             optionBoxClose,
         } = this.state;
 
-        console.log(listProductOrder);
+        // console.log(listProductOrder);
 
         if (loading) {
             return <PlacehoderLoading />;
@@ -187,9 +187,7 @@ class Main extends React.Component {
                         </div>
                         <CartContainer
                             listProductOrder={listProductOrder}
-                            listOrderClickOpenOptionBox={
-                                this.listOrderClickOpenOptionBox
-                            }
+                            editOptionProduct={this.editOptionProduct}
                         />
                     </div>
                     {infoOptionProduct.length !== 0 ? (
