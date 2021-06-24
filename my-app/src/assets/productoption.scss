@@ -86,13 +86,15 @@
                     input {
                         font-size: 15px;
                     }
-                    span {
+                    label {
                         font-size: 14px;
                         color: rgb(51, 51, 51);
                         margin-left: 2px;
                         p {
                             display: inline-block;
                         }
+                        cursor: pointer;
+                        user-select: none;
                     }
                 }
             }

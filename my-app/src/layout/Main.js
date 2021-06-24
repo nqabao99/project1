@@ -79,7 +79,6 @@ class Main extends React.Component {
         let { listProductOrder } = this.state;
 
         let copyListProductOrder = [...listProductOrder];
-
         //edit item product order
         if (this.state.indexProductOrder !== -1) {
             copyListProductOrder = copyListProductOrder.filter(
@@ -109,6 +108,7 @@ class Main extends React.Component {
                     (item) => item.amount > 0
                 ),
             });
+            this.props.getAmount([...copyListProductOrder, data]);
         }
 
         this.setState({

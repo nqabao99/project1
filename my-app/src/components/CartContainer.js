@@ -6,14 +6,24 @@ import Currency from "../common/Currency";
 import ItemProductOrder from "../common/ItemProductOrder";
 
 class Cart extends React.Component {
+    totalPrice = (data) => {
+        let totalPrice = 0;
+        if (data !== undefined) {
+            data.map((item) => (totalPrice += item.totalPrice));
+        }
+        return totalPrice;
+    };
+
+    totalAmount = (data) => {
+        let totalAmount = 0;
+        if (data !== undefined) {
+            data.map((item) => (totalAmount += item.amount));
+        }
+        return totalAmount;
+    };
+
     render() {
         const { listProductOrder, editOptionProduct } = this.props;
-        let totalPrice = 0;
-        let totalAmount = 0;
-        if (listProductOrder !== undefined) {
-            listProductOrder.map((item) => (totalAmount += item.amount));
-            listProductOrder.map((item) => (totalPrice += item.totalPrice));
-        }
 
         return (
             <div className="main-container__right">
@@ -38,13 +48,24 @@ class Cart extends React.Component {
                     <div className="main-cart__mid">
                         <div className="total">
                             <p className="color-33">
-                                Cộng món({`${totalAmount} món`})
+                                Cộng món(
+                                {`${this.totalAmount(listProductOrder)} món`})
                             </p>
-                            <Currency className="color-33" price={totalPrice} />
+                            <Currency
+                                className="color-33"
+                                price={this.totalPrice(listProductOrder)}
+                            />
                         </div>
                         <div className="total">
                             <p className="color-33">Vận chuyển</p>
-                            <Currency className="color-33" price="10000" />
+                            <Currency
+                                className="color-33"
+                                price={
+                                    this.totalPrice(listProductOrder) <= 50000
+                                        ? "10000"
+                                        : "0"
+                                }
+                            />
                         </div>
                         <form className="main-cart__mid-form" action="#">
                             <SearchInput
@@ -59,7 +80,12 @@ class Cart extends React.Component {
                             <p>Tổng cộng</p>
                             <Currency
                                 className="totalPrice"
-                                price={totalPrice + 10000}
+                                price={
+                                    this.totalPrice(listProductOrder) <= 50000
+                                        ? this.totalPrice(listProductOrder) +
+                                          10000
+                                        : this.totalPrice(listProductOrder)
+                                }
                             />
                         </div>
                     </div>

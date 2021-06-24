@@ -52,3 +52,7 @@ img{
 ol, ul {
 	list-style: none;
 }
+
+input{
+	cursor: pointer;
+}

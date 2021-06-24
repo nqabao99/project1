@@ -14,6 +14,7 @@ class ProductOption extends React.Component {
             topping: 0,
             nameTopping: "",
             totalPrice: 0,
+            codeTopping: [],
         };
     }
 
@@ -46,6 +47,7 @@ class ProductOption extends React.Component {
                 nameTopping: this.state.nameTopping.concat(
                     ` ${item.product_name} +`
                 ),
+                codeTopping: [...this.state.codeTopping, item.code],
             });
         } else {
             this.setState({
@@ -53,6 +55,9 @@ class ProductOption extends React.Component {
                 nameTopping: this.state.nameTopping.replace(
                     ` ${item.product_name} +`,
                     ""
+                ),
+                codeTopping: this.state.codeTopping.filter(
+                    (i) => i !== item.code
                 ),
             });
         }
@@ -72,6 +77,7 @@ class ProductOption extends React.Component {
             nameTopping: this.state.nameTopping,
             amount: this.state.amount,
             note: document.getElementById("note").value,
+            codeTopping: this.state.codeTopping,
             totalPrice:
                 this.state.amount *
                 (this.state.productPrice + this.state.topping),
@@ -147,6 +153,7 @@ class ProductOption extends React.Component {
                                                         ? "checked"
                                                         : null
                                                 }
+                                                id={item.code}
                                                 type="radio"
                                                 name="radio"
                                                 onClick={() => {
@@ -155,7 +162,7 @@ class ProductOption extends React.Component {
                                                     );
                                                 }}
                                             />
-                                            <span>
+                                            <label htmlFor={item.code}>
                                                 {item.val} (
                                                 <Currency
                                                     price={
@@ -165,7 +172,7 @@ class ProductOption extends React.Component {
                                                     }
                                                 />
                                                 )
-                                            </span>
+                                            </label>
                                         </div>
                                     ))}
                                 </div>
@@ -198,13 +205,13 @@ class ProductOption extends React.Component {
                                                                 : null
                                                         }
                                                     />
-                                                    <span>
+                                                    <label htmlFor={item.code}>
                                                         {item.product_name} (
                                                         <Currency
                                                             price={item.price}
                                                         />
                                                         )
-                                                    </span>
+                                                    </label>
                                                 </div>
                                             )
                                         )}
