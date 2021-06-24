@@ -71,67 +71,51 @@ class Main extends React.Component {
     handleClickCloseOptionBox = () => {
         this.setState({
             optionBoxClose: false,
+            itemProductOrder: [],
         });
-        setTimeout(() => {
-            this.setState({
-                itemProductOrder: [],
-            });
-        }, 300);
     };
 
     getDataOpitonProduct = (data) => {
         let { listProductOrder } = this.state;
-        this.setState({
-            optionBoxClose: false,
-        });
 
-        if (this.state.indexProductOrder === -1) {
-            if (listProductOrder.length === 0) {
-                this.setState({
-                    listProductOrder: [...listProductOrder, data].filter(
-                        (item) => item.amount > 0
-                    ),
-                });
-            } else {
-                let flag = 1;
-                listProductOrder.map((item) =>
-                    item.product_name === data.product_name &&
-                    item.productSize === data.productSize &&
-                    item.nameTopping === data.nameTopping &&
-                    item.note === data.note
-                        ? ((item.amount += data.amount),
-                          (item.totalPrice += data.totalPrice),
-                          (flag *= -1))
-                        : (flag *= 1)
-                );
+        let copyListProductOrder = [...listProductOrder];
 
-                if (flag === 1) {
-                    this.setState({
-                        listProductOrder: [...listProductOrder, data].filter(
-                            (item) => item.amount > 0
-                        ),
-                    });
-                }
-            }
-        } else {
-            let editItemProductOrder = this.state.listProductOrder.fill(
-                data,
-                this.state.indexProductOrder,
-                this.state.indexProductOrder + 1
+        //edit item product order
+        if (this.state.indexProductOrder !== -1) {
+            copyListProductOrder = copyListProductOrder.filter(
+                (item, index) => index !== this.state.indexProductOrder
             );
+
             this.setState({
-                listProductOrder: editItemProductOrder.filter(
+                listProductOrder: copyListProductOrder,
+            });
+        }
+
+        let flag = 1;
+        copyListProductOrder.map((item) =>
+            item.product_name === data.product_name &&
+            item.productSize === data.productSize &&
+            item.nameTopping === data.nameTopping &&
+            item.note === data.note
+                ? ((item.amount += data.amount),
+                  (item.totalPrice += data.totalPrice),
+                  (flag *= -1))
+                : (flag *= 1)
+        );
+
+        if (flag === 1) {
+            this.setState({
+                listProductOrder: [...copyListProductOrder, data].filter(
                     (item) => item.amount > 0
                 ),
             });
         }
 
-        setTimeout(() => {
-            this.setState({
-                itemProductOrder: [],
-                indexProductOrder: -1,
-            });
-        }, 300);
+        this.setState({
+            optionBoxClose: false,
+            indexProductOrder: -1,
+            itemProductOrder: [],
+        });
     };
 
     handleClickOpenOptionBox = (data) => {
