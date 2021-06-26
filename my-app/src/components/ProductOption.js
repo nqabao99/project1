@@ -3,6 +3,8 @@ import "../assets/productoption.scss";
 import Image from "../common/Image";
 import Input from "../common/SearchInput";
 import Currency from "../common/Currency";
+import ProductOptionSize from "./ProductOptionSize";
+import ProductOptionTopping from "./ProductOptionTopping";
 
 class ProductOption extends React.Component {
     constructor(props) {
@@ -147,85 +149,22 @@ class ProductOption extends React.Component {
                     <div className="product-option__body">
                         <div className="product-option__body-option">
                             <p>Loại</p>
-                            <div className="checkbox-container">
-                                <p>Size-</p>
-                                <div className="checkbox-items">
-                                    {itemProductOrder.variants.map((item) => (
-                                        <div
-                                            className="checkbox"
-                                            key={item.code}
-                                        >
-                                            <Input
-                                                checked={
-                                                    item.val === productSize
-                                                        ? "checked"
-                                                        : null
-                                                }
-                                                id={item.code}
-                                                type="radio"
-                                                name="radio"
-                                                onClick={() => {
-                                                    this.handleProductSize(
-                                                        item
-                                                    );
-                                                }}
-                                            />
-                                            <label htmlFor={item.code}>
-                                                {item.val} (
-                                                <Currency
-                                                    price={
-                                                        item.price -
-                                                        itemProductOrder
-                                                            .variants[0].price
-                                                    }
-                                                />
-                                                )
-                                            </label>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
+                            <ProductOptionSize
+                                name="Size-"
+                                itemProductOrder={itemProductOrder}
+                                productSize={productSize}
+                                handleProductSize={this.handleProductSize}
+                            />
 
                             {itemProductOrder.topping_list.length !== 0 ? (
-                                <div className="checkbox-container">
-                                    <p>Topping-</p>
-                                    <div className="checkbox-items">
-                                        {itemProductOrder.topping_list.map(
-                                            (item, index) => (
-                                                <div
-                                                    className="checkbox"
-                                                    key={item.code}
-                                                >
-                                                    <Input
-                                                        type="checkbox"
-                                                        name="checkbox"
-                                                        id={item.code}
-                                                        onClick={() => {
-                                                            this.handleProductToping(
-                                                                item,
-                                                                index
-                                                            );
-                                                        }}
-                                                        checked={
-                                                            nameTopping.includes(
-                                                                item.product_name
-                                                            )
-                                                                ? "checked"
-                                                                : null
-                                                        }
-                                                    />
-                                                    <label htmlFor={item.code}>
-                                                        {item.product_name} (
-                                                        <Currency
-                                                            price={item.price}
-                                                        />
-                                                        )
-                                                    </label>
-                                                </div>
-                                            )
-                                        )}
-                                    </div>
-                                </div>
+                                <ProductOptionTopping
+                                    name="Topping-"
+                                    itemProductOrder={itemProductOrder}
+                                    nameTopping={nameTopping}
+                                    handleProductToping={
+                                        this.handleProductToping
+                                    }
+                                />
                             ) : null}
                         </div>
                         <form
