@@ -99,7 +99,8 @@ class ProductOption extends React.Component {
             itemProductOrder.amount !== undefined &&
             itemProductOrder.toppingPrice !== undefined &&
             itemProductOrder.productPrice !== undefined &&
-            itemProductOrder.nameTopping !== undefined
+            itemProductOrder.nameTopping !== undefined &&
+            itemProductOrder.codeTopping !== undefined
         ) {
             this.setState({
                 productSize: itemProductOrder.productSize,
@@ -107,6 +108,7 @@ class ProductOption extends React.Component {
                 topping: itemProductOrder.toppingPrice,
                 productPrice: itemProductOrder.productPrice,
                 nameTopping: itemProductOrder.nameTopping,
+                codeTopping: itemProductOrder.codeTopping,
             });
         }
     }
