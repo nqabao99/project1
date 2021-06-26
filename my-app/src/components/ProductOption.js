@@ -39,15 +39,21 @@ class ProductOption extends React.Component {
         }
     };
 
-    handleProductToping = (item) => {
+    handleProductToping = (item, index) => {
         let check = document.getElementById(item.code);
         if (check.checked === true) {
+            let addCodeTopping = this.state.codeTopping.splice(
+                index,
+                0,
+                item.code
+            );
+
             this.setState({
                 topping: this.state.topping + item.price,
                 nameTopping: this.state.nameTopping.concat(
                     ` ${item.product_name} +`
                 ),
-                codeTopping: [...this.state.codeTopping, item.code],
+                codeTopping: [...this.state.codeTopping, addCodeTopping],
             });
         } else {
             this.setState({
@@ -183,7 +189,7 @@ class ProductOption extends React.Component {
                                     <p>Topping-</p>
                                     <div className="checkbox-items">
                                         {itemProductOrder.topping_list.map(
-                                            (item) => (
+                                            (item, index) => (
                                                 <div
                                                     className="checkbox"
                                                     key={item.code}
@@ -194,7 +200,8 @@ class ProductOption extends React.Component {
                                                         id={item.code}
                                                         onClick={() => {
                                                             this.handleProductToping(
-                                                                item
+                                                                item,
+                                                                index
                                                             );
                                                         }}
                                                         checked={

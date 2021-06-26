@@ -94,7 +94,8 @@ class Main extends React.Component {
         copyListProductOrder.map((item) =>
             item.product_name === data.product_name &&
             item.productSize === data.productSize &&
-            item.nameTopping === data.nameTopping &&
+            JSON.stringify(item.codeTopping) ===
+                JSON.stringify(data.codeTopping) &&
             item.note === data.note
                 ? ((item.amount += data.amount),
                   (item.totalPrice += data.totalPrice),
