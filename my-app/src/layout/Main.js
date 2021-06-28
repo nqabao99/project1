@@ -1,11 +1,11 @@
 import React from "react";
 import PlacehoderLoading from "../common/PlacehoderLoading";
 import CartContainer from "../components/CartContainer";
-import CategoryContainer from "../components/CategoryContainer";
-import ProductContainer from "../components/ProductContainer";
+import CategoryContainer from "../components/CategoryContainer/index";
+import ProductContainer from "../components/ProductContainer/index";
 import NoneData from "../page/NoneData";
 
-import ProductOption from "../components/ProductOption";
+import ProductOption from "../components/ProductOption/index";
 class Main extends React.Component {
     constructor(props) {
         super(props);

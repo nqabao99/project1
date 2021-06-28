@@ -1,7 +1,7 @@
 import React from "react";
-import Currency from "../common/Currency";
-import Image from "../common/Image";
-import ButtonAdd from "../common/ButtonAdd";
+import Currency from "../../common/Currency";
+import Image from "../../common/Image";
+import ButtonAdd from "../../common/ButtonAdd";
 
 class Product extends React.Component {
     getInfoProduct = (product) => {

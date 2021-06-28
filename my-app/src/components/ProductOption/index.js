@@ -1,8 +1,8 @@
 import React from "react";
-import "../assets/productoption.scss";
-import Image from "../common/Image";
-import Input from "../common/SearchInput";
-import Currency from "../common/Currency";
+import "./productoption.scss";
+import Image from "../../common/Image";
+import Input from "../../common/SearchInput";
+import Currency from "../../common/Currency";
 import ProductOptionSize from "./ProductOptionSize";
 import ProductOptionTopping from "./ProductOptionTopping";
 

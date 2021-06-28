@@ -1,7 +1,7 @@
 import React from "react";
 
-import Input from "../common/SearchInput";
-import Currency from "../common/Currency";
+import Input from "../../common/SearchInput";
+import Currency from "../../common/Currency";
 
 class ProductOptionSize extends React.Component {
     render() {

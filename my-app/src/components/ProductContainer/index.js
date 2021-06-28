@@ -1,8 +1,8 @@
 import React from "react";
-import SearchInput from "../common/SearchInput";
+import SearchInput from "../../common/SearchInput";
 import ProductItems from "./ProductItems";
-import Image from "../common/Image";
-import src_noneproduct from "../assets/img/noneproduct.png";
+import Image from "../../common/Image";
+import src_noneproduct from "../../assets/img/noneproduct.png";
 
 class ProductContainer extends React.Component {
     constructor(props) {
