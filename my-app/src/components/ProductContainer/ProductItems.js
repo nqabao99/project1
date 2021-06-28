@@ -20,6 +20,7 @@ class Product extends React.Component {
                     className="category-product__items-img"
                     src={product.image}
                     alt={`ảnh ${product.product_name}`}
+                    width="80"
                 />
                 <div className="category-product__items-info">
                     <h5 className="category-product__items-name">
