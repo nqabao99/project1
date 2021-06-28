@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./addressitem.scss";
+
 class AddressItem extends React.Component {
     render() {
         const { data } = this.props;

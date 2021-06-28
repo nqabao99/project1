@@ -1,5 +1,5 @@
 import React from "react";
-import PlacehoderLoading from "../common/PlacehoderLoading";
+import PlacehoderLoading from "../common/PlacehoderLoading/index";
 import CartContainer from "../components/CartContainer";
 import CategoryContainer from "../components/CategoryContainer/index";
 import ProductContainer from "../components/ProductContainer/index";

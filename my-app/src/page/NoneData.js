@@ -1,7 +1,7 @@
-import React from 'react';
-import '../assets/style.scss';
+import React from "react";
+import "../assets/style.scss";
 
-import PlacehoderLoading from '../common/PlacehoderLoading'
+import PlacehoderLoading from "../common/PlacehoderLoading/index";
 
 class NoneData extends React.Component {
     render() {
@@ -9,7 +9,7 @@ class NoneData extends React.Component {
             <div className="nonedata">
                 <PlacehoderLoading />
             </div>
-        )
+        );
     }
 }
 

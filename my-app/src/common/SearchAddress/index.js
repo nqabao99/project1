@@ -1,8 +1,8 @@
 import React from "react";
-import SearchInput from "../common/SearchInput";
-import AddressItem from "../common/AddressItem";
-import NoDataAddressItem from "../common/NoDataAddressItem";
-import "../assets/addressitem.scss";
+import SearchInput from "../SearchInput";
+import AddressItem from "./AddressItem";
+import NoDataAddressItem from "./NoDataAddressItem";
+// import "../assets/addressitem.scss";
 
 class SearchAddress extends React.Component {
     constructor(props) {

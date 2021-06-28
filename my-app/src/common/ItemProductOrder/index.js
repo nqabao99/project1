@@ -1,7 +1,7 @@
 import React from "react";
 
-import "../assets/itemProductOrder.scss";
-import Currency from "../common/Currency";
+import "./itemProductOrder.scss";
+import Currency from "../Currency";
 class ItemProductOrder extends React.Component {
     render() {
         const { infoProduct, index } = this.props;

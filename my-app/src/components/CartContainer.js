@@ -3,7 +3,7 @@ import React from "react";
 import Button from "../common/Button";
 import SearchInput from "../common/SearchInput";
 import Currency from "../common/Currency";
-import ItemProductOrder from "../common/ItemProductOrder";
+import ItemProductOrder from "../common/ItemProductOrder/index";
 
 class Cart extends React.Component {
     totalPrice = (data) => {

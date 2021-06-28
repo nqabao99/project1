@@ -3,8 +3,8 @@ import React from "react";
 import logo from "../assets/img/logo.png";
 import Button from "../common/Button";
 import Image from "../common/Image";
-import SearchAddress from "../components/SearchAddress";
-import ShipNow from "../common/ShipNow";
+import SearchAddress from "../common/SearchAddress/index";
+import ShipNow from "../common/ShipNow/index";
 
 class Header extends React.Component {
     constructor(props) {

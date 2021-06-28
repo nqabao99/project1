@@ -1,6 +1,6 @@
 import React from "react";
-import "../assets/shipnow.scss";
-import Button from "../common/Button";
+import "./shipnow.scss";
+import Button from "../Button";
 
 class ShipNow extends React.Component {
     constructor(props) {

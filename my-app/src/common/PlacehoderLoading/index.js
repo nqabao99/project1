@@ -1,7 +1,7 @@
-import React from 'react';
-import '../assets/loading.scss';
-import CartContainer from '../components/CartContainer';
-import SearchInput from '../common/SearchInput';
+import React from "react";
+import "./loading.scss";
+import CartContainer from "../../components/CartContainer";
+import SearchInput from "../SearchInput";
 
 class ProductsLoading extends React.Component {
     render() {
@@ -16,10 +16,9 @@ class ProductsLoading extends React.Component {
                     <div className="ploading divloading"></div>
                 </div>
             </li>
-        )
+        );
     }
 }
-
 
 class PlacehoderLoading extends React.Component {
     render() {
@@ -41,9 +40,15 @@ class PlacehoderLoading extends React.Component {
                         </div>
 
                         <div className="main-container__left-product">
-                            <form className="main-container__left-product__form" action="#">
+                            <form
+                                className="main-container__left-product__form"
+                                action="#"
+                            >
                                 <i className="fa fa-search"></i>
-                                <SearchInput type="text" placeholder="Tìm kiếm sản phẩm" />
+                                <SearchInput
+                                    type="text"
+                                    placeholder="Tìm kiếm sản phẩm"
+                                />
                             </form>
                             <div className="category">
                                 <ul className="category-product__list mt20">
@@ -62,10 +67,7 @@ class PlacehoderLoading extends React.Component {
                     <CartContainer />
                 </div>
             </main>
-
-
-
-        )
+        );
     }
 }
 
