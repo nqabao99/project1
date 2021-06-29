@@ -95,6 +95,7 @@ class Header extends React.Component {
                             <Button
                                 onClick={this.handleOnOffShipNow}
                                 text={textButton}
+                                disabled={true}
                             />
                             <ShipNow
                                 open={open}

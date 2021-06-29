@@ -43,7 +43,14 @@
         &__btnSubmit {
             width: 100%;
             margin: 20px 0 10px;
-            color: rgb(153, 153, 153);
+            color: #fff;
+            background: #ea8025;
+            border: none;
+            &[disabled] {
+                background-color: transparent;
+                border: 1px solid #e5e5e5;
+                color: #a4a2a2;
+            }
         }
     }
     .registrations {
@@ -56,7 +63,7 @@
     .or {
         clear: right;
         font-size: 14px;
-        font-size: #212529;
+        color: #212529;
     }
     &-fb {
         margin-top: 15px;

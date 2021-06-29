@@ -15,6 +15,8 @@ class SearchInput extends React.Component {
                 onClick={this.props.onClick}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                onKeyDown={this.props.onKeyDown}
+                min={this.props.min}
             />
         );
     }

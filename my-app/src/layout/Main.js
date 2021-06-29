@@ -171,6 +171,8 @@ class Main extends React.Component {
             optionBoxClose,
         } = this.state;
 
+        
+
         if (loading) {
             return <PlacehoderLoading />;
         } else if (newData.length === 0) {
