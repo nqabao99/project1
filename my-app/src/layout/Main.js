@@ -57,6 +57,12 @@ class Main extends React.Component {
                         });
                     });
             });
+
+        if (JSON.parse(localStorage.getItem("listOrder")).length > 0) {
+            this.setState({
+                listProductOrder: JSON.parse(localStorage.getItem("listOrder")),
+            });
+        }
     }
 
     getIdActive = (id) => {
@@ -104,12 +110,16 @@ class Main extends React.Component {
         );
 
         if (flag === 1) {
+            const listOrder = [...copyListProductOrder, data].filter(
+                (item) => item.amount > 0
+            );
             this.setState({
-                listProductOrder: [...copyListProductOrder, data].filter(
-                    (item) => item.amount > 0
-                ),
+                listProductOrder: listOrder,
             });
             this.props.getAmount([...copyListProductOrder, data]);
+
+            //set data for localStorage
+            localStorage.setItem("listOrder", JSON.stringify(listOrder));
         }
 
         this.setState({

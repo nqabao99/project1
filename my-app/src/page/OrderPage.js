@@ -22,6 +22,17 @@ class HomePage extends React.Component {
         });
     };
 
+    componentDidMount() {
+        let listOrder = JSON.parse(localStorage.getItem("listOrder"));
+        let totalAmount = 0;
+        if (listOrder.length > 0) {
+            listOrder.map((item) => (totalAmount += item.amount));
+        }
+        this.setState({
+            amount: totalAmount,
+        });
+    }
+
     render() {
         return (
             <div className="home-page">
