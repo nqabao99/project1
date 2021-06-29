@@ -6,6 +6,8 @@ import Image from "../common/Image";
 import SearchAddress from "../common/SearchAddress/index";
 import ShipNow from "../common/ShipNow/index";
 
+import { Link } from "react-router-dom";
+
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -75,15 +77,16 @@ class Header extends React.Component {
             <header className="header">
                 <div className="header-container">
                     <div className="header-left">
-                        <a href="/#">
+                        <Link to="/">
                             <Image
                                 className="header-left__img"
                                 src={logo}
                                 alt="logo the coffee fouse"
                                 width="200"
                             />
-                        </a>
+                        </Link>
                     </div>
+                   
                     <div className="header-center">
                         <div
                             className="header-center__call"
@@ -106,8 +109,12 @@ class Header extends React.Component {
                             <SearchAddress />
                         </div>
                     </div>
+
                     <div className="header-right">
-                        <Button text="Đăng nhập" />
+                        <Link to="/login">
+                            <Button text="Đăng nhập" />
+                        </Link>
+
                         {amount > 0 && (
                             <div className="cart">
                                 <svg

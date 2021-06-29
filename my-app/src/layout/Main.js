@@ -58,7 +58,10 @@ class Main extends React.Component {
                     });
             });
 
-        if (JSON.parse(localStorage.getItem("listOrder")).length > 0) {
+        if (
+            JSON.parse(localStorage.getItem("listOrder")) &&
+            JSON.parse(localStorage.getItem("listOrder")).length > 0
+        ) {
             this.setState({
                 listProductOrder: JSON.parse(localStorage.getItem("listOrder")),
             });
@@ -120,6 +123,12 @@ class Main extends React.Component {
 
             //set data for localStorage
             localStorage.setItem("listOrder", JSON.stringify(listOrder));
+        } else {
+            //set data for localStorage
+            localStorage.setItem(
+                "listOrder",
+                JSON.stringify(copyListProductOrder)
+            );
         }
 
         this.setState({
