@@ -2,6 +2,8 @@ import React from "react";
 import Button from "../../common/Button";
 import Input from "../../common/SearchInput";
 
+import firebase from "./firebase";
+
 class FormPhone extends React.Component {
     constructor(props) {
         super(props);
@@ -43,10 +45,32 @@ class FormPhone extends React.Component {
         }
     };
 
+    bao = () => {
+        let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
+        let number = "+84967844573";
+        firebase
+            .auth()
+            .signInWithPhoneNumber(number, recaptcha)
+            .then((e) => {
+                let code = prompt("nhap ma otp", "");
+                if (code === null) return;
+                e.confirm(code)
+                    .then((result) => {
+                        console.log(result.user, "user");
+                        document.querySelector("label").textContent =
+                            result.user.phoneNumber + "hop le";
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            });
+    };
+
     render() {
         const { textError, checkDisabled } = this.state;
         return (
             <form className="login-form" onSubmit={this.handlePhoneClick}>
+                <label></label>
                 <div className="login-form__phone">
                     <select>
                         <option value="84">+84</option>
@@ -66,6 +90,7 @@ class FormPhone extends React.Component {
                     text={this.props.textSubmit}
                     disabled={checkDisabled}
                 />
+                <Button text="bao" onClick={this.bao} />
             </form>
         );
     }
