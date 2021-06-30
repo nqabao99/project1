@@ -14,18 +14,17 @@
             padding: 8px 13px;
             margin: 10px 0 20px;
             background-color: #ffffff;
-            position: relative;
 
-            img {
-                position: absolute;
-                width: 32px;
-                height: auto;
-            }
             select {
                 padding-left: 40px;
                 margin-right: 10px;
                 border: none;
                 outline: none;
+                height: 24px;
+                &:first-child {
+                    background-image: url("../../assets/img/country.png");
+                    background-repeat: no-repeat;
+                }
             }
             input {
                 color: #333333;
@@ -39,6 +38,7 @@
             color: red;
             font-size: 13px;
             font-weight: 700;
+            height: 15px;
         }
         &__btnSubmit {
             width: 100%;

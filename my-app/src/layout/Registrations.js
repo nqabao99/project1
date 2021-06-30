@@ -1,11 +1,7 @@
 import React from "react";
-import Input from "../common/SearchInput";
-import Button from "../common/Button";
-import Image from "../common/Image";
-import vn from "../assets/img/vn.png";
-import "./Login/login.scss";
-
 import { Link } from "react-router-dom";
+import FormPhone from "../layout/Login/formPhone";
+import "./Login/login.scss";
 
 class Registrations extends React.Component {
     render() {
@@ -15,20 +11,9 @@ class Registrations extends React.Component {
                 <p className="registrations-desc">
                     Nhập số điện thoại để tiếp tục
                 </p>
-                <form className="login-form">
-                    <div className="login-form__phone">
-                        <Image src={vn} />
-                        <select>
-                            <option value="84">+84</option>
-                        </select>
-                        <Input
-                            type="number"
-                            placeholder="Nhập sô điện thoại của bạn"
-                        />
-                    </div>
-                    {/* <p className="error">Không được để trống trường này</p> */}
-                    <Button className="login-form__btnSubmit" text="tiếp tục" />
-                </form>
+
+                <FormPhone textSubmit="tiếp tục" />
+
                 <Link to="/login" className="registrations registrations-cover">
                     Quay về
                 </Link>
