@@ -43,9 +43,7 @@ class FormPhone extends React.Component {
                 textError: "Không được để trống trường này",
             });
         }
-    };
 
-    bao = () => {
         let recaptcha = new firebase.auth.RecaptchaVerifier("recaptcha");
         let number = "+84967844573";
         firebase
@@ -57,7 +55,7 @@ class FormPhone extends React.Component {
                 e.confirm(code)
                     .then((result) => {
                         console.log(result.user, "user");
-                        document.querySelector("label").textContent =
+                        document.querySelector(".bao").textContent =
                             result.user.phoneNumber + "hop le";
                     })
                     .catch((error) => {
@@ -70,7 +68,8 @@ class FormPhone extends React.Component {
         const { textError, checkDisabled } = this.state;
         return (
             <form className="login-form" onSubmit={this.handlePhoneClick}>
-                <label></label>
+                <label className="bao"></label>
+                <div id="recaptcha"></div>
                 <div className="login-form__phone">
                     <select>
                         <option value="84">+84</option>
@@ -90,7 +89,6 @@ class FormPhone extends React.Component {
                     text={this.props.textSubmit}
                     disabled={checkDisabled}
                 />
-                <Button text="bao" onClick={this.bao} />
             </form>
         );
     }
