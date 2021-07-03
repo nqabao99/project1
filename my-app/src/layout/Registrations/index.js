@@ -9,9 +9,10 @@ class Registrations extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      otp: "",
+      otp: null,
       flag: false,
       phone: null,
+      openFormUser: false,
     };
   }
 
@@ -38,7 +39,9 @@ class Registrations extends React.Component {
       .then((result) => {
         const user = result.user;
         console.log(JSON.stringify(user));
-        alert("User is verified");
+        this.setState({
+          openFormUser: true,
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -84,16 +87,17 @@ class Registrations extends React.Component {
   };
 
   render() {
-    const { phone } = this.state;
+    const { phone, flag, openFormUser } = this.state;
     return (
       <>
         <div className="login">
           <div id="recaptcha"></div>
-          {this.state.flag ? (
+          {flag ? (
             <FormOTP
               handleFormOtp={this.handleFormOtp}
               hendleOtp={this.hendleOtp}
               phone={phone}
+              openFormUser={openFormUser}
             />
           ) : (
             <>
