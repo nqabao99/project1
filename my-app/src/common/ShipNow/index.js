@@ -63,13 +63,13 @@ class ShipNow extends React.Component {
             }
 
             if (minutes < 15) {
-                arr2.splice(1, 2);
-            } else if (minutes < 30) {
                 arr2.splice(1, 3);
-            } else if (minutes < 45) {
+            } else if (minutes < 30) {
                 arr2.splice(1, 4);
+            } else if (minutes < 45) {
+                arr2.splice(1, 5);
             } else if (minutes > 45) {
-                arr2.splice(1, 1);
+                arr2.splice(1, 2);
             }
         }
 
@@ -133,15 +133,15 @@ class ShipNow extends React.Component {
                         <select id="time">
                             {checkDay
                                 ? hoursTomorrow.map((item, index) => (
-                                      <option key={index} value={item}>
-                                          {item}
-                                      </option>
-                                  ))
+                                    <option key={index} value={item}>
+                                        {item}
+                                    </option>
+                                ))
                                 : hoursNow.map((item, index) => (
-                                      <option key={index} value={item}>
-                                          {item}
-                                      </option>
-                                  ))}
+                                    <option key={index} value={item}>
+                                        {item}
+                                    </option>
+                                ))}
                         </select>
                     </div>
                     <Button

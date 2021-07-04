@@ -23,6 +23,10 @@ class Header extends React.Component {
         this.setState({
             open: !this.state.open,
         });
+
+
+
+
     };
     handleTimer = () => {
         let date = document.getElementById("date").value;
@@ -86,7 +90,7 @@ class Header extends React.Component {
                             />
                         </Link>
                     </div>
-                   
+
                     <div className="header-center">
                         <div
                             className="header-center__call"
@@ -95,7 +99,7 @@ class Header extends React.Component {
                             <Button
                                 onClick={this.handleOnOffShipNow}
                                 text={textButton}
-                                disabled={true}
+
                             />
                             <ShipNow
                                 open={open}
