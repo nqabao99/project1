@@ -34,23 +34,27 @@ class FormPhone extends React.Component {
       });
     }
 
-    this.props.getPhone(e.target.value);
-  };
-
-  handlePhoneSubmit = (e) => {
-    e.preventDefault();
-    if (this.state.phoneText.length === 0) {
-      this.setState({
-        textError: "Không được để trống trường này",
-      });
+    if (this.props.name === "registrations") {
+      this.props.getPhone(e.target.value);
+    } else {
+      this.props.getPhoneLogin(e.target.value);
     }
   };
+
+  // handlePhoneSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (this.state.phoneText.length === 0) {
+  //     this.setState({
+  //       textError: "Không được để trống trường này",
+  //     });
+  //   }
+  // };
 
   render() {
     const { textError, checkDisabled } = this.state;
 
     return (
-      <form className="login-form" onSubmit={this.handlePhoneSubmit}>
+      <form className="login-form" onSubmit={this.props.handlePhoneSubmit}>
         <div className="login-form__phone">
           <select>
             <option value="84">+84</option>

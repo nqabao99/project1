@@ -12,6 +12,7 @@ class Login extends React.Component {
     this.state = {
       user: null,
       phone: null,
+      loading: true,
     };
   }
 
@@ -27,6 +28,7 @@ class Login extends React.Component {
         });
         this.setState({
           user: users,
+          loading: false,
         });
       })
       .catch((error) => {
@@ -34,17 +36,46 @@ class Login extends React.Component {
       });
   }
 
-  getPhoneLogin = (e) => {
-    console.log(e);
+  getPhoneLogin = (phone) => {
+    this.setState({
+      phone: phone,
+    });
+  };
+
+  handlePhoneClick = () => {
+    const { user, phone } = this.state;
+    let formatPhone = "";
+    if (phone.charAt(0) === "0") {
+      formatPhone = `+84${phone.slice(1)}`;
+    } else {
+      formatPhone = `+84${phone}`;
+    }
+
+    if (user) {
+      let newUser = user.filter((item) => {
+        return item.phone === formatPhone;
+      });
+
+      if (newUser.length !== 0) {
+        alert("dang nhap thanh cong");
+      } else {
+        alert("tai khoan ko ton tai");
+      }
+    }
   };
 
   render() {
-    // console.log(this.state.phone);
+    if (this.state.loading) return <div>loading</div>;
     return (
       <div className="login">
         <h2 className="login-name">Đăng nhập</h2>
 
-        <FormPhone textSubmit="Đăng nhập" getPhoneLogin={this.getPhoneLogin} />
+        <FormPhone
+          textSubmit="Đăng nhập"
+          getPhoneLogin={this.getPhoneLogin}
+          name="login"
+          handlePhoneSubmit={this.handlePhoneClick}
+        />
 
         <Link to="/registrations" className="registrations">
           Đăng kí thành viên mới ?
