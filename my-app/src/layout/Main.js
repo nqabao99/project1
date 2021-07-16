@@ -68,6 +68,7 @@ class Main extends React.Component {
         }
     }
 
+
     getIdActive = (id) => {
         let check = document.querySelectorAll(".active");
 
@@ -82,6 +83,9 @@ class Main extends React.Component {
             optionBoxClose: false,
             itemProductOrder: [],
         });
+        
+        
+        document.body.classList.remove("lockScroll")
     };
 
     getDataOpitonProduct = (data) => {
@@ -136,6 +140,8 @@ class Main extends React.Component {
             indexProductOrder: -1,
             itemProductOrder: [],
         });
+        
+        document.body.classList.remove("lockScroll")
     };
 
     handleClickOpenOptionBox = (data) => {
@@ -151,6 +157,7 @@ class Main extends React.Component {
             itemProductOrder: products,
             indexProductOrder: -1,
         });
+        document.body.classList.add("lockScroll")
     };
 
     editOptionProduct = (data, index) => {
@@ -159,6 +166,7 @@ class Main extends React.Component {
             itemProductOrder: data,
             indexProductOrder: index,
         });
+        document.body.classList.add("lockScroll")
     };
 
     render() {
