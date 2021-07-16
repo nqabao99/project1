@@ -91,6 +91,7 @@ class Main extends React.Component {
     getDataOpitonProduct = (data) => {
         let { listProductOrder } = this.state;
 
+
         let copyListProductOrder = [...listProductOrder];
         //edit item product order
         if (this.state.indexProductOrder !== -1) {

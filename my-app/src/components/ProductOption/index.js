@@ -41,9 +41,9 @@ class ProductOption extends React.Component {
         }
     };
 
-    handleProductToping = (item, index) => {
-        let check = document.getElementById(item.code);
-        if (check.checked === true) {
+    handleProductToping = (e, item, index) => {
+        let check = e.target.checked;
+        if (check === true) {
             let addCodeTopping = this.state.codeTopping.splice(
                 index,
                 0,
@@ -69,6 +69,8 @@ class ProductOption extends React.Component {
                 ),
             });
         }
+
+        
     };
 
     getInfoProduct = () => {
@@ -85,7 +87,7 @@ class ProductOption extends React.Component {
             nameTopping: this.state.nameTopping,
             amount: this.state.amount,
             note: document.getElementById("note").value,
-            codeTopping: this.state.codeTopping,
+            codeTopping: this.state.codeTopping.filter(item => typeof item !== "object"),
             totalPrice:
                 this.state.amount *
                 (this.state.productPrice + this.state.topping),
@@ -119,6 +121,8 @@ class ProductOption extends React.Component {
         const { itemProductOrder, optionBoxClose } = this.props;
         const { productSize, productPrice, amount, topping, nameTopping } =
             this.state;
+
+            // console.log(this.state.codeTopping);
 
         return (
             <div className="overlay">

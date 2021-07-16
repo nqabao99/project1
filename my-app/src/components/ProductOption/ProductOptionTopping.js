@@ -17,8 +17,8 @@ class ProductOptionTopping extends React.Component {
                                 type="checkbox"
                                 name="checkbox"
                                 id={item.code}
-                                onClick={() => {
-                                    handleProductToping(item, index);
+                                onClick={(e) => {
+                                    handleProductToping(e, item, index);
                                 }}
                                 checked={
                                     nameTopping.includes(item.product_name)
