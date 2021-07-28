@@ -10,11 +10,17 @@ import Registrations from "../layout/Registrations/index";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import {UserProvider} from "./UserContext"
+
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       amount: 0,
+      user: {
+        name: "bao",
+        age: 22
+      }
     };
   }
   getAmount = (data) => {
@@ -37,24 +43,26 @@ class HomePage extends React.Component {
       amount: totalAmount,
     });
   }
-
+    
   render() {
     return (
-      <Router>
-        <div className="home-page">
-          <Header amount={this.state.amount} />
+      <UserProvider value={this.state.user}>
+        <Router>
+          <div className="home-page">
+            <Header amount={this.state.amount} />
 
-          <Route
-            path="/"
-            exact
-            render={(props) => <Main getAmount={this.getAmount} />}
-          />
+            <Route
+              path="/"
+              exact
+              render={(props) => <Main getAmount={this.getAmount} />}
+            />
 
-          <Route path="/login" component={Login} />
-          <Route path="/registrations" component={Registrations} />
-          <Footer />
-        </div>
-      </Router>
+            <Route path="/login" component={Login} />
+            <Route path="/registrations" component={Registrations} />
+            <Footer />
+          </div>
+        </Router>
+      </UserProvider>
     );
   }
 }

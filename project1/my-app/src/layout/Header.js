@@ -8,7 +8,10 @@ import ShipNow from "../common/ShipNow/index";
 
 import { Link } from "react-router-dom";
 
+
+import UserContext from "../page/UserContext";
 class Header extends React.Component {
+    static contextType = UserContext;
     constructor(props) {
         super(props);
         this.closeShipNow = React.createRef();
@@ -23,10 +26,6 @@ class Header extends React.Component {
         this.setState({
             open: !this.state.open,
         });
-
-
-
-
     };
     handleTimer = () => {
         let date = document.getElementById("date").value;
@@ -76,7 +75,7 @@ class Header extends React.Component {
     render() {
         const { open, textButton, timeOrder } = this.state;
         const { amount } = this.props;
-
+        console.log(this.context);
         return (
             <header className="header">
                 <div className="header-container">
