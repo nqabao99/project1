@@ -3,68 +3,101 @@ import "./styleModalOrder.scss";
 import Image from "../common/Image";
 import Input from "../common/Input";
 import Currency from "../common/Currency";
-import cafe from "../../assets/img/cafe.jpeg";
-function ModalOrder(props) {
+function ModalOrder({
+  productSelect,
+  CloseModalOrder,
+  amount,
+  handlePlusAmount,
+  handleMinusAmount,
+  size,
+  priceSize,
+  handleSizeChange,
+  nameTopping,
+  priceTopping,
+  handleToppingChange,
+  handleNoteChange,
+}) {
   return (
-    <div className="overlay">
+    <>
+      <div className="overlay" onClick={CloseModalOrder}></div>
       <div className="modal-order">
         <div className="product-option__top">
-          <Image src={cafe} width="80" />
+          <Image src={productSelect.image} width="80" height="80" />
           <div className="product-option__top-info">
-            <p>Cà phê sữa đá</p>
-            <p>Vừa</p>
-            <p>Topping 1</p>
+            <p>{productSelect.product_name}</p>
+            <p>{size}</p>
+            <p>{nameTopping.slice(0, -2)}</p>
           </div>
-          <i className="fa fa-times"></i>
+          <i className="fa fa-times" onClick={CloseModalOrder}></i>
         </div>
 
         <div className="product-option__body">
           <div className="product-option__body-option">
-            <p>Loại</p>
-            <div className="checkbox-container">
-              <p>Size-</p>
-              <div className="checkbox-items">
-                <div className="checkbox">
-                  <Input type="radio" name="radio" />
-                  <span>
-                    <Currency price="10000" />
-                  </span>
+            {/* <p>Loại</p> */}
+            {productSelect.variants.length !== 0 && (
+              <div className="checkbox-container">
+                <p>Size-</p>
+                <div className="checkbox-items">
+                  {productSelect.variants.map((item) => (
+                    <div className="checkbox" key={item.product_id}>
+                      <Input
+                        type="radio"
+                        name="radio"
+                        checked={item.val === size ? "checked" : null}
+                        onChange={(e) => handleSizeChange(e, item)}
+                      />
+                      <span>
+                        {item.val}
+                        (<Currency price={item.price} />)
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
 
-            <div className="checkbox-container">
-              <p>Topping-</p>
-              <div className="checkbox-items">
-                <div className="checkbox">
-                  <Input type="checkbox" name="checkbox" />
-                  <span>
-                    <Currency price="10000" />
-                  </span>
+            {productSelect.topping_list.length !== 0 && (
+              <div className="checkbox-container">
+                <p>Topping-</p>
+                <div className="checkbox-items">
+                  {productSelect.topping_list.map((item, index) => (
+                    <div className="checkbox" key={item.product_id}>
+                      <Input
+                        type="checkbox"
+                        name="checkbox"
+                        onChange={(e) => handleToppingChange(e, item, index)}
+                      />
+                      <span>
+                        {item.product_name}
+                        (<Currency price={item.price} />)
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
-            </div>
+            )}
           </div>
           <Input
             className="note"
             type="text"
             placeholder="Thêm ghi chú món này"
+            onChange={handleNoteChange}
           />
         </div>
 
         <div className="product-option__bot">
           <div className="product-option__bot-left">
-            <i className="fa fa-minus-circle"></i>
-            <span>1</span>
-            <i className="fa fa-plus-circle"></i>
+            <i className="fa fa-minus-circle" onClick={handleMinusAmount}></i>
+            <span>{amount}</span>
+            <i className="fa fa-plus-circle" onClick={handlePlusAmount}></i>
           </div>
           <div className="product-option__bot-right">
             <p>Thêm vào giỏ hàng</p>
-            <Currency price="20000" />
+            <Currency price={amount * (priceSize + priceTopping)} />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

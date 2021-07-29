@@ -12,7 +12,11 @@ import {
   makeSelectStatusFlags,
 } from "../../redux/selectors/data";
 import BodyCenter from "./BodyCenter";
-import "./styleBody.scss";
+
+const style = {
+  padding: "100px 0 440px",
+  display: "flex",
+};
 
 function Body({ statusFlags, triggerGetListData, listData }) {
   useEffect(() => {
@@ -53,15 +57,13 @@ function Body({ statusFlags, triggerGetListData, listData }) {
     return <Loading />;
   } else {
     return (
-      <main>
-        <div className="container">
-          <div className="body">
-            <BodyLeft listData={listData} />
-            <BodyCenter listData={listData} />
-            <BodyRight />
-          </div>
+      <div className="container">
+        <div className="body" style={style}>
+          <BodyLeft listData={listData} />
+          <BodyCenter listData={listData} />
+          <BodyRight />
         </div>
-      </main>
+      </div>
     );
   }
 }

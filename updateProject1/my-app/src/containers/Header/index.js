@@ -1,44 +1,19 @@
-import React, { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
+import React, { memo, useEffect, useRef, useState } from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { createStructuredSelector } from "reselect";
 import HeaderRender from "../../conponents/layout/Header";
-function Header(props) {
+import { getListAddress } from "../../redux/actions/address";
+import { makeSelectListAddress } from "../../redux/selectors/address";
+function Header({ callApiAddress, dataAddress }) {
   const refAddress = useRef();
   const [searchText, setSearchText] = useState("");
-  const [dataAddress, setDataAddress] = useState([]);
   const [closeAddress, setCloseAddress] = useState(false);
   const handleSearchAddressChange = (e) => {
     setSearchText(e.target.value);
     if (e.target.value.length > 3) {
-      fetch(
-        `https://api.thecoffeehouse.com/api/v5/map/autocomplete?key=${e.target.value.toLowerCase()}&from=TCH-WEB`,
-        {
-          headers: {
-            accept: "application/json, text/plain, */*",
-            "accept-language": "en-US,en;q=0.9,ja;q=0.8",
-            "cache-control": "no-cache",
-            pragma: "no-cache",
-            "sec-ch-ua":
-              '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
-            "sec-ch-ua-mobile": "?0",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-site": "same-site",
-            "tch-app-version": "",
-            "tch-device-id": "",
-            "x-csrf-token": "XJVEF4AnLtZqcFJ87XeJaV1nJxGC5HrAkMy9QCHA",
-            "x-requested-with": "XMLHttpRequest",
-          },
-          referrer: "https://order.thecoffeehouse.com/",
-          referrerPolicy: "strict-origin-when-cross-origin",
-          body: null,
-          method: "GET",
-          mode: "cors",
-          credentials: "omit",
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          setDataAddress(data.addresses);
-        });
+      callApiAddress(e.target.value);
     }
   };
 
@@ -74,5 +49,21 @@ function Header(props) {
     />
   );
 }
+Header.propTypes = {
+  callApiAddress: PropTypes.func,
+  dataAddress: PropTypes.array,
+};
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+  dataAddress: makeSelectListAddress(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    callApiAddress: (address) => dispatch(getListAddress(address)),
+  };
+}
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect, memo)(Header);
