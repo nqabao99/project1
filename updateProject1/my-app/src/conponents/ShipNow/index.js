@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "../common/Button";
 import "./styleShipNow.scss";
-function ShipNow(props) {
+function ShipNow({ handleCloseShipNow }) {
+  
   return (
     <div className="ship-now">
       <div className="ship-now__top">
@@ -14,7 +15,8 @@ function ShipNow(props) {
           <span>Thời gian đặt hàng</span>
         </div>
       </div>
-      <div className={"ship-now__bot"}>
+
+      <div className="ship-now__bot">
         <div className="ship-now__bot-day">
           <label>Ngày đặt</label>
           <select id="date">
@@ -31,7 +33,11 @@ function ShipNow(props) {
             <option>option1</option>
           </select>
         </div>
-        <Button className="btn-shipnow" text="Hẹn giờ" />
+        <Button
+          className="btn-shipnow"
+          text="Hẹn giờ"
+          onClick={handleCloseShipNow}
+        />
       </div>
     </div>
   );

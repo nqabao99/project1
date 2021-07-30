@@ -7,10 +7,13 @@ import BodyLeft from "../../conponents/BodyLeft";
 import BodyRight from "../../conponents/BodyRight";
 import Loading from "../../conponents/Loading";
 import { getListData } from "../../redux/actions/data";
+import { selectProduct } from "../../redux/actions/order";
+
 import {
   makeSelectListData,
   makeSelectStatusFlags,
 } from "../../redux/selectors/data";
+import { makeSelectListProductOrder } from "../../redux/selectors/order";
 import BodyCenter from "./BodyCenter";
 
 const style = {
@@ -18,7 +21,13 @@ const style = {
   display: "flex",
 };
 
-function Body({ statusFlags, triggerGetListData, listData }) {
+function Body({
+  statusFlags,
+  triggerGetListData,
+  listData,
+  listProductOrder,
+  openModalOrder,
+}) {
   useEffect(() => {
     triggerGetListData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,7 +70,10 @@ function Body({ statusFlags, triggerGetListData, listData }) {
         <div className="body" style={style}>
           <BodyLeft listData={listData} />
           <BodyCenter listData={listData} />
-          <BodyRight />
+          <BodyRight
+            listProductOrder={listProductOrder}
+            openModalOrder={openModalOrder}
+          />
         </div>
       </div>
     );
@@ -72,16 +84,20 @@ Body.propTypes = {
   statusFlags: PropTypes.object,
   triggerGetListData: PropTypes.func,
   listData: PropTypes.array,
+  listProductOrder: PropTypes.array,
+  openModalOrder: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   statusFlags: makeSelectStatusFlags(),
   listData: makeSelectListData(),
+  listProductOrder: makeSelectListProductOrder(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     triggerGetListData: () => dispatch(getListData()),
+    openModalOrder: (product, index) => dispatch(selectProduct(product, index)),
   };
 }
 

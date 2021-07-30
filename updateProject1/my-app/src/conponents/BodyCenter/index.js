@@ -8,7 +8,7 @@ function BodyCenter({
   handleSearchProductChange,
   filterProduct,
   searchText,
-  handleOpenModalOrder,
+  openModalOrder,
 }) {
   return (
     <div className="body-center">
@@ -29,7 +29,7 @@ function BodyCenter({
             <ul className="product">
               {item.ListProduct.map((i) => (
                 <ProductItem
-                  handleOpenModalOrder={handleOpenModalOrder}
+                  openModalOrder={openModalOrder}
                   product={i}
                   key={i._id}
                 />

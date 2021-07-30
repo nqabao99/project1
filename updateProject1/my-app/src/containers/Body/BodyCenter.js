@@ -7,8 +7,9 @@ import BodyCenterRender from "../../conponents/BodyCenter";
 import { selectProduct } from "../../redux/actions/order";
 import { makeSelectListData } from "../../redux/selectors/data";
 import { makeSelectStatusFlags } from "../../redux/selectors/order";
+
 import ModalOrder from "./ModalOrder";
-function BodyCenter({ listData, statusFlag, OpenModalOrder }) {
+function BodyCenter({ listData, statusFlag, openModalOrder }) {
   const [filterProduct, setFilterProduct] = useState([]);
   const [searchText, setSearchText] = useState("");
   const handleSearchProductChange = (e) => {
@@ -29,10 +30,6 @@ function BodyCenter({ listData, statusFlag, OpenModalOrder }) {
     setFilterProduct(newFilterProduct);
   };
 
-  const handleOpenModalOrder = (product) => {
-    OpenModalOrder(product);
-  };
-
   return (
     <>
       <BodyCenterRender
@@ -40,7 +37,7 @@ function BodyCenter({ listData, statusFlag, OpenModalOrder }) {
         handleSearchProductChange={handleSearchProductChange}
         filterProduct={filterProduct}
         searchText={searchText}
-        handleOpenModalOrder={handleOpenModalOrder}
+        openModalOrder={openModalOrder}
       />
       {statusFlag.openModal && <ModalOrder />}
     </>
@@ -50,7 +47,7 @@ function BodyCenter({ listData, statusFlag, OpenModalOrder }) {
 BodyCenter.propTypes = {
   listData: PropTypes.array,
   statusFlag: PropTypes.object,
-  OpenModalOrder: PropTypes.func,
+  openModalOrder: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -60,7 +57,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    OpenModalOrder: (product) => dispatch(selectProduct(product)),
+    openModalOrder: (product, index) => dispatch(selectProduct(product, index)),
   };
 }
 

@@ -16,6 +16,7 @@ function ModalOrder({
   priceTopping,
   handleToppingChange,
   handleNoteChange,
+  handleAddProductOrderClick,
 }) {
   return (
     <>
@@ -42,8 +43,9 @@ function ModalOrder({
                     <div className="checkbox" key={item.product_id}>
                       <Input
                         type="radio"
-                        name="radio"
-                        checked={item.val === size ? "checked" : null}
+                        name={item.val}
+                        checked={item.val === size}
+                        value={size}
                         onChange={(e) => handleSizeChange(e, item)}
                       />
                       <span>
@@ -64,7 +66,8 @@ function ModalOrder({
                     <div className="checkbox" key={item.product_id}>
                       <Input
                         type="checkbox"
-                        name="checkbox"
+                        name={item.product_name}
+                        checked={nameTopping.includes(item.product_name)}
                         onChange={(e) => handleToppingChange(e, item, index)}
                       />
                       <span>
@@ -91,7 +94,10 @@ function ModalOrder({
             <span>{amount}</span>
             <i className="fa fa-plus-circle" onClick={handlePlusAmount}></i>
           </div>
-          <div className="product-option__bot-right">
+          <div
+            className="product-option__bot-right"
+            onClick={handleAddProductOrderClick}
+          >
             <p>Thêm vào giỏ hàng</p>
             <Currency price={amount * (priceSize + priceTopping)} />
           </div>

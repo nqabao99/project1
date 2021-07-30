@@ -1,9 +1,8 @@
-import { takeLatest, call, put } from "redux-saga/effects";
-import axios from "axios";
 import _get from "lodash/get";
+import { call, put, takeLatest } from "redux-saga/effects";
 import {
-  getListAddressSuccess,
   getListAddressFailed,
+  getListAddressSuccess,
 } from "../actions/address";
 import { GET_LIST_ADDRESS } from "../constants/address";
 

@@ -6,10 +6,13 @@ import { createStructuredSelector } from "reselect";
 import HeaderRender from "../../conponents/layout/Header";
 import { getListAddress } from "../../redux/actions/address";
 import { makeSelectListAddress } from "../../redux/selectors/address";
-function Header({ callApiAddress, dataAddress }) {
+import { makeSelectListProductOrder } from "../../redux/selectors/order";
+function Header({ callApiAddress, dataAddress, listProductOrder }) {
   const refAddress = useRef();
+
   const [searchText, setSearchText] = useState("");
   const [closeAddress, setCloseAddress] = useState(false);
+  const [openShipNow, setOpenShipNow] = useState(false);
   const handleSearchAddressChange = (e) => {
     setSearchText(e.target.value);
     if (e.target.value.length > 3) {
@@ -37,6 +40,14 @@ function Header({ callApiAddress, dataAddress }) {
     }
   };
 
+  const handleCloseShipNow = () => {
+    setOpenShipNow(false);
+  };
+
+  const handleOpenShipNow = () => {
+    setOpenShipNow(!openShipNow);
+  };
+
   return (
     <HeaderRender
       handleSearchAddressChange={handleSearchAddressChange}
@@ -46,16 +57,22 @@ function Header({ callApiAddress, dataAddress }) {
       closeAddress={closeAddress}
       openAddressModal={openAddressModal}
       refAddress={refAddress}
+      listProductOrder={listProductOrder}
+      openShipNow={openShipNow}
+      handleOpenShipNow={handleOpenShipNow}
+      handleCloseShipNow={handleCloseShipNow}
     />
   );
 }
 Header.propTypes = {
   callApiAddress: PropTypes.func,
   dataAddress: PropTypes.array,
+  listProductOrder: PropTypes.array,
 };
 
 const mapStateToProps = createStructuredSelector({
   dataAddress: makeSelectListAddress(),
+  listProductOrder: makeSelectListProductOrder(),
 });
 
 function mapDispatchToProps(dispatch) {

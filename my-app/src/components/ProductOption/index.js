@@ -122,7 +122,7 @@ class ProductOption extends React.Component {
         const { productSize, productPrice, amount, topping, nameTopping } =
             this.state;
 
-            // console.log(this.state.codeTopping);
+            
 
         return (
             <div className="overlay">

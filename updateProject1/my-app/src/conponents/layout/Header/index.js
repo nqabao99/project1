@@ -1,12 +1,12 @@
 import React from "react";
-import Image from "../../common/Image";
-import Button from "../../common/Button";
-import Input from "../../common/Input";
-import Cart from "../../common/Cart";
-import "./styleHeader.scss";
 import logo from "../../../assets/img/logo.png";
+import Button from "../../common/Button";
+import Cart from "../../common/Cart";
+import Image from "../../common/Image";
+import Input from "../../common/Input";
 import ListSearchAddress from "../../ListSearchAddress";
 import NoneAddress from "../../ListSearchAddress/NoneAddress";
+import "./styleHeader.scss";
 import ShipNow from "../../ShipNow";
 function Header({
   handleSearchAddressChange,
@@ -16,6 +16,10 @@ function Header({
   closeAddress,
   openAddressModal,
   refAddress,
+  listProductOrder,
+  openShipNow,
+  handleOpenShipNow,
+  handleCloseShipNow,
 }) {
   return (
     <header>
@@ -26,8 +30,10 @@ function Header({
               <Image src={logo} alt="logo thecoffee house" width="190" />
             </div>
             <div className="header-center">
-              <Button text="Giao ngay" />
-              {/* <ShipNow /> */}
+              <Button text="Giao ngay" onClick={handleOpenShipNow} />
+              {openShipNow && (
+                <ShipNow handleCloseShipNow={handleCloseShipNow} />
+              )}
               <Input
                 type="text"
                 placeholder="Nhập địa chỉ giao hàng"
@@ -51,7 +57,7 @@ function Header({
             </div>
             <div className="header-right">
               <Button text="Đăng nhập" />
-              <Cart />
+              <Cart listProductOrder={listProductOrder} />
             </div>
           </div>
         </div>
