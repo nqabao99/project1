@@ -78,8 +78,8 @@
     "intl": "1.2.5",
     "invariant": "2.2.4",
     "ip": "1.1.5",
-    "lodash": "4.17.11",
-    "minimist": "1.2.0",
+    "lodash": "^4.17.21",
+    "minimist": "^1.2.5",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -139,10 +139,10 @@
     "jest-styled-components": "6.3.1",
     "lint-staged": "8.1.5",
     "ngrok": "3.1.1",
-    "node-plop": "0.18.0",
+    "node-plop": "^0.26.2",
     "null-loader": "0.1.1",
     "offline-plugin": "5.0.6",
-    "plop": "2.3.0",
+    "plop": "^2.7.4",
     "pre-commit": "1.2.2",
     "prettier": "1.17.0",
     "react-app-polyfill": "0.2.2",
@@ -162,7 +162,7 @@
     "webpack-cli": "3.3.0",
     "webpack-dev-middleware": "3.6.2",
     "webpack-hot-middleware": "2.24.3",
-    "webpack-pwa-manifest": "4.0.0",
+    "webpack-pwa-manifest": "^4.3.0",
     "whatwg-fetch": "3.0.0"
   }
 }

@@ -11,7 +11,6 @@ import {
   SEARCH_MOVIES,
   SEARCH_MOVIES_SUCCESS,
   SEARCH_MOVIES_FAILED,
-  RESET_LIST_MOVIES,
 } from './constants';
 
 export function getMovies(page) {
@@ -21,10 +20,11 @@ export function getMovies(page) {
   };
 }
 
-export function getMoviesSuccess(payload) {
+export function getMoviesSuccess(payload, page) {
   return {
     type: GET_MOVIES_SUCCESS,
     payload,
+    page,
   };
 }
 
@@ -43,10 +43,11 @@ export function searchMovies(keyword, page) {
   };
 }
 
-export function searchMoviesSuccess(payload) {
+export function searchMoviesSuccess(payload, page) {
   return {
     type: SEARCH_MOVIES_SUCCESS,
     payload,
+    page,
   };
 }
 
@@ -54,11 +55,5 @@ export function searchMoviesFailed(message = '') {
   return {
     type: SEARCH_MOVIES_FAILED,
     message,
-  };
-}
-
-export function resetListMovies() {
-  return {
-    type: RESET_LIST_MOVIES,
   };
 }

@@ -11,13 +11,10 @@ import {
   SEARCH_MOVIES,
   SEARCH_MOVIES_SUCCESS,
   SEARCH_MOVIES_FAILED,
-  RESET_LIST_MOVIES,
 } from './constants';
 
 export const initialState = {
-  movies: {},
   listMovies: [],
-  listSearchMovies: [],
   searchText: '',
   statusFlags: {
     isLoading: false,
@@ -37,8 +34,11 @@ const homePageReducer = (state = initialState, action) =>
 
       case GET_MOVIES_SUCCESS:
         draft.statusFlags.isLoading = false;
-        draft.movies = action.payload;
-        draft.listMovies = state.listMovies.concat(action.payload.results);
+        if (action.page === 1) {
+          draft.listMovies = action.payload.results;
+        } else {
+          draft.listMovies = state.listMovies.concat(action.payload.results);
+        }
         break;
 
       case GET_MOVIES_FAILED:
@@ -53,20 +53,17 @@ const homePageReducer = (state = initialState, action) =>
 
       case SEARCH_MOVIES_SUCCESS:
         draft.statusFlags.isLoading = false;
-        draft.listSearchMovies = state.listSearchMovies.concat(
-          action.payload.results,
-        );
+        // draft.listMovies = [];
+        if (action.page === 1) {
+          draft.listMovies = action.payload.results;
+        } else {
+          draft.listMovies = state.listMovies.concat(action.payload.results);
+        }
         break;
 
       case SEARCH_MOVIES_FAILED:
         draft.statusFlags.isLoading = false;
         draft.log.error = action.message;
-        break;
-
-      case RESET_LIST_MOVIES:
-        draft.statusFlags.isLoading = false;
-        draft.movies = [];
-        draft.listMovies = [];
         break;
     }
   });

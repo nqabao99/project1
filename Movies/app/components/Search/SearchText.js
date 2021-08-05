@@ -12,11 +12,12 @@ import { createStructuredSelector } from 'reselect';
 // import styled from 'styled-components';
 import Input from '../Input';
 
-function Search({ handleSearchMoviesChange }) {
+function Search({ handleSearchMoviesChange, searchText }) {
   return (
     <div>
       <Input
         onChange={e => handleSearchMoviesChange(e.target.value)}
+        value={searchText}
         type="text"
         placeholder="Search"
       />
@@ -26,6 +27,7 @@ function Search({ handleSearchMoviesChange }) {
 
 Search.propTypes = {
   handleSearchMoviesChange: PropTypes.func,
+  searchText: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({});

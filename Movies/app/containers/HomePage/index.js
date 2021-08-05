@@ -15,13 +15,11 @@ import { useInjectSaga } from 'utils/injectSaga';
 import Banner from '../../components/Banner';
 import ListMovies from '../../components/ListMovies';
 import Search from '../../components/Search';
-import { getIdMovies } from '../App/actions';
-import { getMovies, resetListMovies, searchMovies } from './actions';
+import { getMovies, searchMovies } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 import {
   makeSelectListMovies,
-  makeSelectListSearchMovies,
   makeSelectSearchText,
   makeSelectStatusFlags,
 } from './selectors';
@@ -30,42 +28,47 @@ export function HomePage({
   triggerFetchListMovies,
   statusFlag,
   listMovies,
-  listSearchMovies,
   searchText,
-  getIdMovie,
-  resetListMovies,
   triggerSearchMovies,
 }) {
   useInjectReducer({ key: 'homePage', reducer });
   useInjectSaga({ key: 'homePage', saga });
   const [page, setPage] = useState(1);
+  const [pageSearch, setPageSearch] = useState(1);
 
   useEffect(() => {
-    resetListMovies();
-  }, []);
-
-  useEffect(() => {
-    triggerFetchListMovies(page);
-  }, [page]);
+    if (searchText.length === 0) {
+      triggerFetchListMovies(page);
+    }
+    triggerSearchMovies(searchText, pageSearch);
+  }, [page, pageSearch]);
 
   const handlePageClick = () => {
-    setPage(page + 1);
-    triggerSearchMovies(searchText, page + 1);
+    if (searchText.length === 0) {
+      setPage(page + 1);
+    } else {
+      setPageSearch(pageSearch + 1);
+    }
   };
 
   const handleSearchMoviesChange = e => {
-    triggerSearchMovies(e, 1);
+    if (e.length === 0) {
+      triggerFetchListMovies(1);
+    }
+    triggerSearchMovies(e, pageSearch);
   };
 
   return (
     <>
       <Banner />
-      <Search handleSearchMoviesChange={handleSearchMoviesChange} />
+      <Search
+        searchText={searchText}
+        handleSearchMoviesChange={handleSearchMoviesChange}
+      />
       <ListMovies
-        getIdMovies={getIdMovie}
         statusFlag={statusFlag}
         searchText={searchText}
-        listMovies={searchText.length === 0 ? listMovies : listSearchMovies}
+        listMovies={listMovies}
         handlePageClick={handlePageClick}
       />
     </>
@@ -76,25 +79,19 @@ HomePage.propTypes = {
   listMovies: PropTypes.array,
   statusFlag: PropTypes.object,
   triggerFetchListMovies: PropTypes.func,
-  listSearchMovies: PropTypes.array,
   searchText: PropTypes.string,
-  getIdMovie: PropTypes.func,
-  resetListMovies: PropTypes.func,
   triggerSearchMovies: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   statusFlag: makeSelectStatusFlags(),
   listMovies: makeSelectListMovies(),
-  listSearchMovies: makeSelectListSearchMovies(),
   searchText: makeSelectSearchText(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     triggerFetchListMovies: page => dispatch(getMovies(page)),
-    getIdMovie: id => dispatch(getIdMovies(id)),
-    resetListMovies: () => dispatch(resetListMovies()),
     triggerSearchMovies: (keyword, page) =>
       dispatch(searchMovies(keyword, page)),
   };

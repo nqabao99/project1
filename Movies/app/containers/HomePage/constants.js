@@ -15,5 +15,3 @@ export const SEARCH_MOVIES = 'app/HomePage/SEARCH_MOVIES';
 export const SEARCH_MOVIES_SUCCESS = 'app/HomePage/SEARCH_MOVIES_SUCCESS';
 
 export const SEARCH_MOVIES_FAILED = 'app/HomePage/SEARCH_MOVIES_FAILED';
-
-export const RESET_LIST_MOVIES = 'app/HomePage/RESET_LIST_MOVIES';

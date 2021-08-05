@@ -7,22 +7,10 @@ import { initialState } from './reducer';
 
 const selectHomePageDomain = state => state.homePage || initialState;
 
-const makeSelectMovies = () =>
-  createSelector(
-    selectHomePageDomain,
-    substate => substate.movies,
-  );
-
 const makeSelectListMovies = () =>
   createSelector(
     selectHomePageDomain,
     substate => substate.listMovies,
-  );
-
-const makeSelectListSearchMovies = () =>
-  createSelector(
-    selectHomePageDomain,
-    substate => substate.listSearchMovies,
   );
 
 const makeSelectSearchText = () =>
@@ -37,10 +25,4 @@ const makeSelectStatusFlags = () =>
     substate => substate.statusFlags,
   );
 
-export {
-  makeSelectMovies,
-  makeSelectStatusFlags,
-  makeSelectListMovies,
-  makeSelectListSearchMovies,
-  makeSelectSearchText,
-};
+export { makeSelectStatusFlags, makeSelectListMovies, makeSelectSearchText };

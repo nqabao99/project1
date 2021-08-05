@@ -28,7 +28,7 @@ function* callApiMovies({ page }) {
     const response = yield call(fetchMovies, page);
     const data = _get(response, 'data', []);
     if (response.status === 200) {
-      yield put(getMoviesSuccess(data));
+      yield put(getMoviesSuccess(data, page));
     } else {
       yield put(getMoviesFailed(response));
     }
@@ -42,7 +42,7 @@ function* callApiSearchMovies({ keyword, page }) {
     const response = yield call(fetchSearchMovies, keyword, page);
     const data = _get(response, 'data', []);
     if (response.status === 200) {
-      yield put(searchMoviesSuccess(data));
+      yield put(searchMoviesSuccess(data, page));
     } else {
       yield put(searchMoviesFailed(response));
     }

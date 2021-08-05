@@ -15,11 +15,14 @@ const Bg = styled.div`
   padding: 25px 0;
 `;
 
-function Search({ handleSearchMoviesChange }) {
+function Search({ handleSearchMoviesChange, searchText }) {
   return (
     <Bg>
       <Container>
-        <SearchText handleSearchMoviesChange={handleSearchMoviesChange} />
+        <SearchText
+          searchText={searchText}
+          handleSearchMoviesChange={handleSearchMoviesChange}
+        />
       </Container>
     </Bg>
   );
@@ -27,6 +30,7 @@ function Search({ handleSearchMoviesChange }) {
 
 Search.propTypes = {
   handleSearchMoviesChange: PropTypes.func,
+  searchText: PropTypes.string,
 };
 
 export default Search;
